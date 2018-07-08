@@ -9,7 +9,7 @@
 import Foundation
 
 class SetGame {
-    
+    // print("try source control in XCode.")
     var deck = SetCardDeck()
     var cardsOnTable = [SetCard]()
     var selectedCards = [SetCard]()
