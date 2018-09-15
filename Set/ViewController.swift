@@ -103,8 +103,7 @@ class ViewController: UIViewController {
     
     
     private func configureDealThreeMoreCardsButtonClickability() {
-        let visibleButtons = cardButtons.filter {$0.backgroundColor != UIColor.clear}
-        if !setGame.currentlyAMatch && (visibleButtons.count >= 24 || setGame.deck.cardsCount == 0) {
+        if setGame.deck.cardsCount == 0 {
             dealThreeMoreCardsButton.isEnabled = false
         } else {
             dealThreeMoreCardsButton.isEnabled = true
