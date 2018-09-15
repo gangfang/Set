@@ -16,7 +16,10 @@ class ViewController: UIViewController {
     let symbolChoices = ["▲", "●", "■"]
     
     
-    @IBOutlet var cardButtons: [UIButton]!
+    @IBOutlet weak var boardView: BoardView!
+    
+    //TODO: remove stub below
+    var cardButtons = [UIButton]()
     @IBOutlet weak var dealThreeMoreCardsButton: UIButton! {
         didSet {
             dealThreeMoreCardsButton.layer.borderWidth = 3.0
@@ -113,6 +116,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         updateViewFromModel()
         view.backgroundColor = UIColor(rgb: 0x009051)
+        
+//        TODO: remove test code
+//        boardView.cardViews.append(CardView())
+//        boardView.cardViews.append(CardView())
+//        boardView.cardViews.append(CardView())
     }
 }
 

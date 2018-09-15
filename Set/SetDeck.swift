@@ -30,7 +30,7 @@ struct SetCardDeck {
     
     
     // TODO: think three use sites of this func, should forced unwrapping be used?
-    // Or optioning binding should be used instead?
+    // Or optional binding should be used instead?
     mutating func drawFromDeck() -> SetCard? {
         if cards.count > 0 {
             return cards.remove(at: cards.count.arc4random)
