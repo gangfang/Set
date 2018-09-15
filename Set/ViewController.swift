@@ -64,26 +64,7 @@ class ViewController: UIViewController {
     
     
     private func updateCardsFromModel() {
-        for index in cardButtons.indices {
-            let button = cardButtons[index]
-            button.backgroundColor = UIColor.clear
-            button.setAttributedTitle(NSAttributedString(string: ""), for: .normal)
-            button.layer.borderWidth = 0
-            button.layer.cornerRadius = 8.0
-            
-            if index < setGame.cardsOnTable.count {
-                let card = setGame.cardsOnTable[index]
-                let string = String(repeating: symbolChoices[card.symbol.idx], count: card.number.rawValue)
-                let attributes: [NSAttributedStringKey: Any] = [
-                    .foregroundColor: colorChoices[card.color.idx].withAlphaComponent(shadingChoices[card.shading.idx].alpha),
-                    .strokeWidth: shadingChoices[card.shading.idx].strokeWidth
-                ]
-                let attributedText = NSAttributedString(string: string, attributes: attributes)
-                
-                button.setAttributedTitle(attributedText, for: .normal)
-                button.backgroundColor = UIColor.white
-            }
-        }
+        boardView.cardViews = setGame.cardsOnTable.map { _ in CardView() }
     }
     
     
@@ -115,11 +96,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         updateViewFromModel()
         view.backgroundColor = UIColor(rgb: 0x009051)
-        
-//        TODO: remove test code
-//        boardView.cardViews.append(CardView())
-//        boardView.cardViews.append(CardView())
-//        boardView.cardViews.append(CardView())
     }
 }
 
