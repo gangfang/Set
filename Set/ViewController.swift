@@ -38,14 +38,14 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func touchCard(_ sender: UIButton) {
-        if let cardNumber = cardButtons.index(of: sender) {
-            if cardNumber < setGame.cardsOnTable.count {
-                setGame.touchACard(at: cardNumber)
-                updateViewFromModel()
-            }
-        }
-    }
+//    @IBAction func touchCard(_ sender: UIButton) {
+//        if let cardNumber = cardButtons.index(of: sender) {
+//            if cardNumber < setGame.cardsOnTable.count {
+//                setGame.touchACard(at: cardNumber)
+//                updateViewFromModel()
+//            }
+//        }
+//    }
     @IBAction func pressNewGameButton(_ sender: UIButton) {
         setGame = SetGame()
         updateViewFromModel()
@@ -64,7 +64,14 @@ class ViewController: UIViewController {
     
     
     private func updateCardsFromModel() {
-        boardView.cardViews = setGame.cardsOnTable.map { _ in CardView() }
+        boardView.cardViews = setGame.cardsOnTable.map { setCard in
+            let cardView = CardView()   // should I use var?
+            cardView.symbolInt = setCard.symbol.rawValue
+            cardView.fillingInt = setCard.shading.rawValue
+            cardView.colorInt = setCard.color.rawValue
+            cardView.number = setCard.number.rawValue
+            return cardView
+        }
     }
     
     
