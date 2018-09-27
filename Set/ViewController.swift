@@ -102,7 +102,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViewFromModel()
-        view.backgroundColor = UIColor(rgb: 0x009051)
+        boardView.backgroundColor = .clear
+        boardView.isOpaque = false
     }
 }
 
