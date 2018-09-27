@@ -40,6 +40,8 @@ class BoardView: UIView {
         
         for index in cardViews.indices {
             cardViews[index].frame = grid[index]!.insetBy(dx: 2.0, dy: 2.0)
+            cardViews[index].backgroundColor = .clear
+            cardViews[index].isOpaque = false
         }
     }
 }
