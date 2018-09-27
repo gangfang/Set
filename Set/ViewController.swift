@@ -11,15 +11,8 @@ import UIKit
 class ViewController: UIViewController {
 
     var setGame = SetGame()
-    let colorChoices: [UIColor] = [#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1), #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1), #colorLiteral(red: 0, green: 0.5603182912, blue: 0, alpha: 1)]
-    let shadingChoices: [(alpha: CGFloat, strokeWidth: CGFloat)] = [(1, 3), (0.4, 0), (1, 0)]
-    let symbolChoices = ["▲", "●", "■"]
-    
     
     @IBOutlet weak var boardView: BoardView!
-    
-    //TODO: remove stub below
-    var cardButtons = [UIButton]()
     @IBOutlet weak var dealThreeMoreCardsButton: UIButton! {
         didSet {
             dealThreeMoreCardsButton.layer.borderWidth = 3.0
@@ -38,14 +31,6 @@ class ViewController: UIViewController {
     }
     
     
-//    @IBAction func touchCard(_ sender: UIButton) {
-//        if let cardNumber = cardButtons.index(of: sender) {
-//            if cardNumber < setGame.cardsOnTable.count {
-//                setGame.touchACard(at: cardNumber)
-//                updateViewFromModel()
-//            }
-//        }
-//    }
     @IBAction func pressNewGameButton(_ sender: UIButton) {
         setGame = SetGame()
         updateViewFromModel()
@@ -69,6 +54,7 @@ class ViewController: UIViewController {
             updateViewFromModel()
         }
     }
+    
     
     private func dealThreeMoreCards() {
         setGame.dealThreeMoreCards()
