@@ -56,6 +56,14 @@ class ViewController: UIViewController {
     }
     
     
+    @objc func tapCard(byHandlingGestureRecognizedBy recognizer: UITapGestureRecognizer) {
+        if let card = recognizer.view as? CardView, let cardNumber = boardView.cardViews.index(of: card) {
+            setGame.touchACard(at: cardNumber)
+            updateViewFromModel()
+        }
+    }
+    
+    
     private func updateViewFromModel() {
         updateCardsFromModel()
         updateSelectedCardsFromModel()
@@ -70,6 +78,9 @@ class ViewController: UIViewController {
             cardView.fillingInt = setCard.shading.rawValue
             cardView.colorInt = setCard.color.rawValue
             cardView.number = setCard.number.rawValue
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(tapCard(byHandlingGestureRecognizedBy:)))
+            cardView.addGestureRecognizer(tap)
             return cardView
         }
     }
@@ -78,12 +89,10 @@ class ViewController: UIViewController {
     private func updateSelectedCardsFromModel() {
         for selectedCard in setGame.selectedCards {
             if let matchedCardIndex = setGame.cardsOnTable.index(of: selectedCard) {
-                let button = cardButtons[matchedCardIndex]
-                button.layer.borderWidth = 3.0
-                button.layer.borderColor = UIColor.orange.cgColor
-                
+                let cardView = boardView.cardViews[matchedCardIndex]
+                cardView.isSelected = true
                 if setGame.currentlyAMatch {
-                    button.backgroundColor = UIColor.lightGray
+                    cardView.isMatched = true
                 }
             }
         }
@@ -102,6 +111,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViewFromModel()
+        
         boardView.backgroundColor = .clear
         boardView.isOpaque = false
     }

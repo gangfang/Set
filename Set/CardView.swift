@@ -11,6 +11,9 @@ import UIKit
 @IBDesignable
 class CardView: UIView {
     
+    var isSelected = false { didSet {setNeedsDisplay()} }
+    var isMatched = false { didSet {setNeedsDisplay()} }
+    
     @IBInspectable
     var symbolInt: Int = 1 {
         didSet {
@@ -85,6 +88,16 @@ class CardView: UIView {
         let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: bounds.height * SizeRatio.cornerRadiusToBoundsHeight)
         Colors.background.setFill()
         roundedRect.fill()
+        
+        roundedRect.lineWidth = 5.0
+        if isSelected {
+            #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).setStroke()
+            roundedRect.stroke()
+        }
+        if isMatched {
+            #colorLiteral(red: 0.6679978967, green: 0.4751212597, blue: 0.2586010993, alpha: 1).setStroke()
+            roundedRect.stroke()
+        }
         
         drawPips()
     }
@@ -223,7 +236,7 @@ class CardView: UIView {
     
     
     private struct SizeRatio {
-        static let cornerRadiusToBoundsHeight: CGFloat = 0.06
+        static let cornerRadiusToBoundsHeight: CGFloat = 0.1
         static let maxFaceSizeToBoundsSize: CGFloat = 0.75
         static let pipHeightToFaceHeight: CGFloat = 0.25
     }
