@@ -51,16 +51,28 @@ class ViewController: UIViewController {
         updateViewFromModel()
     }
     @IBAction func pressDealThreeMoreCardsButton(_ sender: UIButton) {
-        setGame.dealThreeMoreCards()
-        updateViewFromModel()
+        dealThreeMoreCards()
+    }
+    @IBAction func swipeToDealThreeMoreCards(_ sender: UISwipeGestureRecognizer) {
+        switch sender.state {
+        case .ended:
+            dealThreeMoreCards()
+        default:
+            break
+        }
     }
     
     
-    @objc func tapCard(byHandlingGestureRecognizedBy recognizer: UITapGestureRecognizer) {
+    @objc func selectOrDeselectCard(byHandlingGestureRecognizedBy recognizer: UITapGestureRecognizer) {
         if let card = recognizer.view as? CardView, let cardNumber = boardView.cardViews.index(of: card) {
             setGame.touchACard(at: cardNumber)
             updateViewFromModel()
         }
+    }
+    
+    private func dealThreeMoreCards() {
+        setGame.dealThreeMoreCards()
+        updateViewFromModel()
     }
     
     
@@ -79,7 +91,7 @@ class ViewController: UIViewController {
             cardView.colorInt = setCard.color.rawValue
             cardView.number = setCard.number.rawValue
             
-            let tap = UITapGestureRecognizer(target: self, action: #selector(tapCard(byHandlingGestureRecognizedBy:)))
+            let tap = UITapGestureRecognizer(target: self, action: #selector(selectOrDeselectCard(byHandlingGestureRecognizedBy:)))
             cardView.addGestureRecognizer(tap)
             return cardView
         }

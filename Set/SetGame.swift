@@ -90,6 +90,8 @@ class SetGame {
     
     
     func dealThreeMoreCards() {
+        guard deck.cardsCount != 0 else { return }
+        
         if currentlyAMatch {
             replaceOrRemoveMatchedCards()
             selectedCards.removeAll()
