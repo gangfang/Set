@@ -32,7 +32,7 @@
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYY-lK-kbA">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYY-lK-kbA" customClass="ControlButton" customModule="Set" customModuleProvider="target">
                                         <rect key="frame" x="120" y="0.0" width="115" height="30"/>
                                         <state key="normal" title="Deal 3 +">
                                             <color key="titleColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,7 +41,7 @@
                                             <action selector="pressDealThreeMoreCardsButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GqH-9e-nnd"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUa-1z-aer">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUa-1z-aer" customClass="ControlButton" customModule="Set" customModuleProvider="target">
                                         <rect key="frame" x="240" y="0.0" width="115" height="30"/>
                                         <state key="normal" title="New Game">
                                             <color key="titleColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -75,7 +75,6 @@
                         <outlet property="boardView" destination="4lM-ia-J9E" id="fo3-9m-Z0I"/>
                         <outlet property="dealThreeMoreCardsButton" destination="CYY-lK-kbA" id="yG7-TO-Az2"/>
                         <outlet property="deckCountLabel" destination="5KG-e7-rkB" id="hXt-PF-uMa"/>
-                        <outlet property="newGameButton" destination="PUa-1z-aer" id="aY2-yZ-HoX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

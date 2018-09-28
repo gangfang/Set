@@ -13,22 +13,7 @@ class ViewController: UIViewController {
     var setGame = SetGame()
     
     @IBOutlet weak var boardView: BoardView!
-    @IBOutlet weak var dealThreeMoreCardsButton: UIButton! {
-        didSet {
-            dealThreeMoreCardsButton.layer.borderWidth = 3.0
-            dealThreeMoreCardsButton.layer.borderColor = UIColor(rgb: 0x8DFA00).cgColor
-            dealThreeMoreCardsButton.layer.cornerRadius = 8.0
-            dealThreeMoreCardsButton.setTitleColor(UIColor(rgb: 0x8DFA00), for: .normal)
-        }
-    }
-    @IBOutlet weak var newGameButton: UIButton! {
-        didSet {
-            newGameButton.layer.borderWidth = 3.0
-            newGameButton.layer.borderColor = UIColor(rgb: 0x8DFA00).cgColor
-            newGameButton.layer.cornerRadius = 8.0
-            newGameButton.setTitleColor(UIColor(rgb: 0x8DFA00), for: .normal)
-        }
-    }
+    @IBOutlet weak var dealThreeMoreCardsButton: UIButton!
     @IBOutlet weak var deckCountLabel: UILabel!
     
     
