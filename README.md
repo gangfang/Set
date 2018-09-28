@@ -5,6 +5,6 @@ Credit to tatiana.kornilova@gmail.com, I borrowed his code for shape drawing for
 
 ## Snapshots:
 
-![portrait mode][portrait.png]
+![portrait mode](portrait.png)
 
-![landscape mode][landscape.png]
+![landscape mode](landscape.png)
