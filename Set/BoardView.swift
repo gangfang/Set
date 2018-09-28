@@ -35,13 +35,21 @@ class BoardView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        var grid = Grid(layout: .aspectRatio(0.7), frame: bounds)
+        var grid = Grid(layout: .aspectRatio(Layout.aspectRatio), frame: bounds)
         grid.cellCount = cardViews.count
         
         for index in cardViews.indices {
-            cardViews[index].frame = grid[index]!.insetBy(dx: 2.0, dy: 2.0)
+            cardViews[index].frame = grid[index]!.insetBy(dx: Layout.verticalInterCardDistance,
+                                                          dy: Layout.horizonalInterCardDistance)
             cardViews[index].backgroundColor = .clear
             cardViews[index].isOpaque = false
         }
+    }
+    
+    
+    private struct Layout {
+        static let aspectRatio: CGFloat = 0.7
+        static let verticalInterCardDistance: CGFloat = 2.5
+        static let horizonalInterCardDistance: CGFloat = 2.5
     }
 }
