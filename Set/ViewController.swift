@@ -29,6 +29,7 @@ class ViewController: UIViewController {
             newGameButton.setTitleColor(UIColor(rgb: 0x8DFA00), for: .normal)
         }
     }
+    @IBOutlet weak var deckCountLabel: UILabel!
     
     
     @IBAction func rotateToReshuffleCards(_ sender: UIRotationGestureRecognizer) {
@@ -72,6 +73,7 @@ class ViewController: UIViewController {
         updateCardsFromModel()
         updateSelectedCardsFromModel()
         configureDealThreeMoreCardsButtonClickability()
+        updateDeckCountLabel()
     }
     
     
@@ -120,6 +122,10 @@ class ViewController: UIViewController {
         }
     }
 
+    
+    private func updateDeckCountLabel() {
+        deckCountLabel.text = "Deck: \(setGame.deck.cardsCount)"
+    }
     
     
     override func viewDidLoad() {

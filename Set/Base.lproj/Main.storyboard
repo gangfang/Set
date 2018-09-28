@@ -74,6 +74,7 @@
                     <connections>
                         <outlet property="boardView" destination="4lM-ia-J9E" id="fo3-9m-Z0I"/>
                         <outlet property="dealThreeMoreCardsButton" destination="CYY-lK-kbA" id="yG7-TO-Az2"/>
+                        <outlet property="deckCountLabel" destination="5KG-e7-rkB" id="hXt-PF-uMa"/>
                         <outlet property="newGameButton" destination="PUa-1z-aer" id="aY2-yZ-HoX"/>
                     </connections>
                 </viewController>
@@ -94,7 +95,6 @@
         <!--View Controller-->
         <scene sceneID="Sgx-iu-dAF">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OtP-sJ-pFG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="dtG-Ic-GhK" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fH9-zv-Z0z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -137,6 +137,7 @@
                         <viewLayoutGuide key="safeArea" id="wzC-bP-b5V"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OtP-sJ-pFG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="978.39999999999998" y="132.68365817091455"/>
         </scene>
