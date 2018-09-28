@@ -14,13 +14,10 @@ class SetGame {
     var selectedCards = [SetCard]()
     var removedCards = [SetCard]()
     var currentlyAMatch = false
+    let initialNumberOfCardsOnTable = 12
     
     init() {
-        for _ in 0...11 {
-            if let aCardFromDeck = deck.drawFromDeck() {
-                cardsOnTable.append(aCardFromDeck)
-            }
-        }
+        drawFromDeck(initialNumberOfCardsOnTable)
     }
     
     
@@ -64,7 +61,7 @@ class SetGame {
     
     private func replaceOrRemoveMatchedCards() {
         if deck.cardsCount > 0 {
-            let new = [deck.drawFromDeck()!, deck.drawFromDeck()!, deck.drawFromDeck()!]
+            let new = [deck.draw()!, deck.draw()!, deck.draw()!]
             cardsOnTable.replace(old: selectedCards, with: new)
         } else {
             cardsOnTable.remove(elements: selectedCards)
@@ -102,14 +99,31 @@ class SetGame {
     
     private func addThreeCardsToGame() {
         guard deck.cardsCount != 0 else { return }
+        
         for _ in 0...2 {
-            cardsOnTable.append(deck.drawFromDeck()!)
+            cardsOnTable.append(deck.draw()!)
         }
     }
     
     
     func reshuffleCards() {
-        cardsOnTable.shuffle()
+        guard selectedCards.count == 0 else { return }
+        
+        deck.putBack(cardsOnTable)
+        deck.shuffle()
+        
+        let numberOfCardsOnTable = cardsOnTable.count
+        cardsOnTable = []
+        drawFromDeck(numberOfCardsOnTable)
+    }
+    
+    
+    private func drawFromDeck(_ numberOfCards: Int) {
+        for _ in 0..<numberOfCards {
+            if let aCardFromDeck = deck.draw() {
+                cardsOnTable.append(aCardFromDeck)
+            }
+        }
     }
 }
 

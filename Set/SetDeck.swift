@@ -31,11 +31,21 @@ struct SetCardDeck {
     
     // TODO: think three use sites of this func, should forced unwrapping be used?
     // Or optional binding should be used instead?
-    mutating func drawFromDeck() -> SetCard? {
+    mutating func draw() -> SetCard? {
         if cards.count > 0 {
             return cards.remove(at: cards.count.arc4random)
         } else {
             return nil
         }
+    }
+    
+    
+    mutating func putBack(_ incomingCards: [SetCard]) {
+        cards += incomingCards
+    }
+    
+    
+    mutating func shuffle() {
+        cards.shuffle()
     }
 }
