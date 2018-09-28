@@ -24,17 +24,17 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9oy-sg-3og">
-                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <rect key="frame" x="75" y="637" width="225" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KG-e7-rkB">
-                                        <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYY-lK-kbA">
-                                        <rect key="frame" x="125" y="0.0" width="125" height="30"/>
-                                        <state key="normal" title="Deal 3 more cards">
+                                        <rect key="frame" x="75" y="0.0" width="75" height="30"/>
+                                        <state key="normal" title="Deal 3 +">
                                             <color key="titleColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -42,7 +42,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUa-1z-aer">
-                                        <rect key="frame" x="250" y="0.0" width="125" height="30"/>
+                                        <rect key="frame" x="150" y="0.0" width="75" height="30"/>
                                         <state key="normal" title="New Game">
                                             <color key="titleColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -66,6 +66,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="FA2-Hb-TIu" appends="YES" id="Kiu-bA-GeX"/>
+                            <outletCollection property="gestureRecognizers" destination="4k5-Ph-rNi" appends="YES" id="djz-49-523"/>
                         </connections>
                     </view>
                     <connections>
@@ -80,6 +81,11 @@
                         <action selector="swipeToDealThreeMoreCards:" destination="BYZ-38-t0r" id="CTu-gr-JqO"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <rotationGestureRecognizer id="4k5-Ph-rNi">
+                    <connections>
+                        <action selector="rotateToReshuffleCards:" destination="BYZ-38-t0r" id="7CP-g6-Bd7"/>
+                    </connections>
+                </rotationGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>

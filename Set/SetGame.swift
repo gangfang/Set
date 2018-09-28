@@ -90,8 +90,6 @@ class SetGame {
     
     
     func dealThreeMoreCards() {
-        guard deck.cardsCount != 0 else { return }
-        
         if currentlyAMatch {
             replaceOrRemoveMatchedCards()
             selectedCards.removeAll()
@@ -103,11 +101,22 @@ class SetGame {
     
     
     private func addThreeCardsToGame() {
+        guard deck.cardsCount != 0 else { return }
         for _ in 0...2 {
             cardsOnTable.append(deck.drawFromDeck()!)
         }
     }
+    
+    
+    func reshuffleCards() {
+        cardsOnTable.shuffle()
+    }
 }
+
+
+
+
+
 
 
 
@@ -140,5 +149,14 @@ extension Array where Element: Equatable {
     
     mutating func remove(elements: [Element]) {
         self = self.filter { !elements.contains($0) }
+    }
+    
+    
+    mutating func shuffle() {
+        var temp = self
+        self = []
+        while temp.count > 0 {
+            self.append(temp.remove(at: temp.count.arc4random))
+        }
     }
 }

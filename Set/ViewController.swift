@@ -31,12 +31,13 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func pressNewGameButton(_ sender: UIButton) {
-        setGame = SetGame()
-        updateViewFromModel()
-    }
-    @IBAction func pressDealThreeMoreCardsButton(_ sender: UIButton) {
-        dealThreeMoreCards()
+    @IBAction func rotateToReshuffleCards(_ sender: UIRotationGestureRecognizer) {
+        switch sender.state {
+        case .ended:
+            reshuffleCards()
+        default:
+            break
+        }
     }
     @IBAction func swipeToDealThreeMoreCards(_ sender: UISwipeGestureRecognizer) {
         switch sender.state {
@@ -46,13 +47,18 @@ class ViewController: UIViewController {
             break
         }
     }
+    @IBAction func pressDealThreeMoreCardsButton(_ sender: UIButton) {
+        dealThreeMoreCards()
+    }
+    @IBAction func pressNewGameButton(_ sender: UIButton) {
+        setGame = SetGame()
+        updateViewFromModel()
+    }
     
     
-    @objc func selectOrDeselectCard(byHandlingGestureRecognizedBy recognizer: UITapGestureRecognizer) {
-        if let card = recognizer.view as? CardView, let cardNumber = boardView.cardViews.index(of: card) {
-            setGame.touchACard(at: cardNumber)
-            updateViewFromModel()
-        }
+    private func reshuffleCards() {
+        setGame.reshuffleCards()
+        updateViewFromModel()
     }
     
     
@@ -77,9 +83,18 @@ class ViewController: UIViewController {
             cardView.colorInt = setCard.color.rawValue
             cardView.number = setCard.number.rawValue
             
-            let tap = UITapGestureRecognizer(target: self, action: #selector(selectOrDeselectCard(byHandlingGestureRecognizedBy:)))
+            let tap = UITapGestureRecognizer(target: self,
+                                             action: #selector(selectOrDeselectCard(byHandlingGestureRecognizedBy:)))
             cardView.addGestureRecognizer(tap)
             return cardView
+        }
+    }
+    
+    
+    @objc func selectOrDeselectCard(byHandlingGestureRecognizedBy recognizer: UITapGestureRecognizer) {
+        if let card = recognizer.view as? CardView, let cardNumber = boardView.cardViews.index(of: card) {
+            setGame.touchACard(at: cardNumber)
+            updateViewFromModel()
         }
     }
     
@@ -105,7 +120,8 @@ class ViewController: UIViewController {
         }
     }
 
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViewFromModel()
