@@ -78,7 +78,8 @@ class CardView: UIView {
         static let purple = #colorLiteral(red: 0.5791940689, green: 0.1280144453, blue: 0.5726861358, alpha: 1)
         
         static let background = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
-        static let selected = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1).cgColor
+        static let selected = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+        static let matched = #colorLiteral(red: 0.07450980392, green: 0.5568627451, blue: 0.3254901961, alpha: 0.2462007705)
     }
     
     
@@ -89,14 +90,15 @@ class CardView: UIView {
         Colors.background.setFill()
         roundedRect.fill()
         
-        roundedRect.lineWidth = 5.0
-        if isSelected {
-            #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).setStroke()
-            roundedRect.stroke()
+        if isSelected && !isMatched {
+            layer.borderColor = Colors.selected.cgColor
+            layer.borderWidth = bounds.height * SizeRatio.borderWidthToBoundsHeight
+            layer.cornerRadius = bounds.height * SizeRatio.cornerRadiusToBoundsHeight
+
         }
         if isMatched {
-            #colorLiteral(red: 0.6679978967, green: 0.4751212597, blue: 0.2586010993, alpha: 1).setStroke()
-            roundedRect.stroke()
+            Colors.matched.setFill()
+            roundedRect.fill()
         }
         
         drawPips()
@@ -142,7 +144,7 @@ class CardView: UIView {
             path = pathForOval(in: rect)
         }
         
-        path.lineWidth = 3.0
+        path.lineWidth = bounds.height * SizeRatio.pathLineWidthToBoundsHeight
         path.stroke()
         
         switch filling {
@@ -237,7 +239,9 @@ class CardView: UIView {
     
     private struct SizeRatio {
         static let cornerRadiusToBoundsHeight: CGFloat = 0.1
+        static let borderWidthToBoundsHeight: CGFloat = 0.035
         static let maxFaceSizeToBoundsSize: CGFloat = 0.75
+        static let pathLineWidthToBoundsHeight: CGFloat = 0.015
         static let pipHeightToFaceHeight: CGFloat = 0.25
     }
     
