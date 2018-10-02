@@ -24,7 +24,7 @@ class SetGame {
     func touchACard(at cardNumber: Int) {
         if isSelected(card: cardsOnTable[cardNumber]) {
             if selectedCards.count == 3 {
-                selectedCards.removeAll()
+                deselectAllSelectedCards()
             } else {
                 deselectACard(at: cardNumber)
             }
@@ -32,12 +32,17 @@ class SetGame {
             selectACard(at: cardNumber)
         }
     }
- 
+    
     
     private func isSelected(card: SetCard) -> Bool {
         return selectedCards.contains(card)
     }
-
+    
+    
+    private func deselectAllSelectedCards() {
+        selectedCards.removeAll()
+    }
+    
     
     private func deselectACard(at cardNumber: Int) {
         selectedCards.remove(at: selectedCards.index(of: cardsOnTable[cardNumber])!)

@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         updateDeckCountLabel()
     }
     
-    
+//    Can I not wipe out all card view then build from scratch?
     private func updateCardsFromModel() {
         boardView.cardViews = setGame.cardsOnTable.map { setCard in
             let cardView = CardView()   // should I use var?
@@ -71,7 +71,8 @@ class ViewController: UIViewController {
             cardView.number = setCard.number.rawValue
             
             let tap = UITapGestureRecognizer(target: self,
-                                             action: #selector(selectOrDeselectCard(byHandlingGestureRecognizedBy:)))
+                                             action: #selector(selectOrDeselectCard(byHandlingGestureRecognizedBy:))
+                                            )
             cardView.addGestureRecognizer(tap)
             return cardView
         }
@@ -88,11 +89,11 @@ class ViewController: UIViewController {
     
     private func updateSelectedCardsFromModel() {
         for selectedCard in setGame.selectedCards {
-            if let matchedCardIndex = setGame.cardsOnTable.index(of: selectedCard) {
-                let cardView = boardView.cardViews[matchedCardIndex]
-                cardView.isSelected = true
+            if let selectedCardIndex = setGame.cardsOnTable.index(of: selectedCard) {
+                let selectedCardView = boardView.cardViews[selectedCardIndex]
+                selectedCardView.isSelected = true
                 if setGame.currentlyAMatch {
-                    cardView.isMatched = true
+                    selectedCardView.isMatched = true
                 }
             }
         }
