@@ -12,7 +12,7 @@ class SetGame {
     var deck = SetCardDeck()
     var cardsOnTable = [SetCard]()
     var selectedCards = [SetCard]()
-    var removedCards = [SetCard]()
+    var discardPile = [SetCard]()
     var currentlyAMatch = false
     let initialNumberOfCardsOnTable = 12
     
@@ -53,7 +53,7 @@ class SetGame {
         if selectedCards.count == 3 {
             if currentlyAMatch {
                 replaceOrRemoveMatchedCards()
-                addSelectedCardsToRemovedCards()
+                addSelectedCardsToDiscardPile()
             }
             deselectAllSelectedCards()
         }
@@ -74,8 +74,8 @@ class SetGame {
     }
     
     
-    private func addSelectedCardsToRemovedCards() {
-        removedCards += selectedCards
+    private func addSelectedCardsToDiscardPile() {
+        discardPile += selectedCards
     }
     
     
