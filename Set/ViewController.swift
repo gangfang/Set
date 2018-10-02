@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var deckCountLabel: UILabel!
     
     
+    // MARK: UI events
     @IBAction func rotateToReshuffleCards(_ sender: UIRotationGestureRecognizer) {
         switch sender.state {
         case .ended:
@@ -39,6 +40,12 @@ class ViewController: UIViewController {
     @IBAction func pressNewGameButton(_ sender: UIButton) {
         setGame = SetGame()
         updateViewFromModel()
+    }
+    @objc func selectOrDeselectCard(byHandlingGestureRecognizedBy recognizer: UITapGestureRecognizer) {
+        if let card = recognizer.view as? CardView, let cardNumber = boardView.cardViews.index(of: card) {
+            setGame.touchACard(at: cardNumber)
+            updateViewFromModel()
+        }
     }
     
     
@@ -75,14 +82,6 @@ class ViewController: UIViewController {
                                             )
             cardView.addGestureRecognizer(tap)
             return cardView
-        }
-    }
-    
-    
-    @objc func selectOrDeselectCard(byHandlingGestureRecognizedBy recognizer: UITapGestureRecognizer) {
-        if let card = recognizer.view as? CardView, let cardNumber = boardView.cardViews.index(of: card) {
-            setGame.touchACard(at: cardNumber)
-            updateViewFromModel()
         }
     }
     

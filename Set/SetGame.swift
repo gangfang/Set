@@ -55,7 +55,7 @@ class SetGame {
                 replaceOrRemoveMatchedCards()
                 addSelectedCardsToRemovedCards()
             }
-            selectedCards.removeAll()
+            deselectAllSelectedCards()
         }
         
         selectedCards.append(cardsOnTable[cardNumber])
