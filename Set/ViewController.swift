@@ -13,7 +13,9 @@ class ViewController: UIViewController {
     var setGame = SetGame()
     
     @IBOutlet weak var boardView: BoardView!
-    @IBOutlet weak var dealThreeMoreCardsButton: UIButton!
+//    @IBOutlet weak var dealThreeMoreCardsButton: UIButton!
+    @IBOutlet weak var deckImage: UIImageView!
+    @IBOutlet weak var bottomStackView: UIStackView!
     @IBOutlet weak var deckCountLabel: UILabel!
     
     
@@ -34,9 +36,9 @@ class ViewController: UIViewController {
             break
         }
     }
-    @IBAction func pressDealThreeMoreCardsButton(_ sender: UIButton) {
-        dealThreeMoreCards()
-    }
+//    @IBAction func pressDealThreeMoreCardsButton(_ sender: UIButton) {
+//        dealThreeMoreCards()
+//    }
     @IBAction func pressNewGameButton(_ sender: UIButton) {
         setGame = SetGame()
         updateViewFromModel()
@@ -64,24 +66,32 @@ class ViewController: UIViewController {
     private func updateViewFromModel() {
         updateCardsFromModel()
         updateSelectedCardsFromModel()
-        configureDealThreeMoreCardsButtonClickability()
+//        configureDealThreeMoreCardsButtonClickability()
         updateDeckCountLabel()
     }
     
 //    Can I not wipe out all card view then build from scratch?
     private func updateCardsFromModel() {
-        boardView.cardViews = setGame.cardsOnTable.map { setCard in
-            let cardView = CardView()   // should I use var?
-            cardView.symbolInt = setCard.symbol.rawValue
-            cardView.fillingInt = setCard.shading.rawValue
-            cardView.colorInt = setCard.color.rawValue
-            cardView.number = setCard.number.rawValue
-            
-            let tap = UITapGestureRecognizer(target: self,
-                                             action: #selector(selectOrDeselectCard(byHandlingGestureRecognizedBy:))
-                                            )
-            cardView.addGestureRecognizer(tap)
-            return cardView
+        // viewDidLoad - deal cards
+        if boardView.cardViews.count == 0 {
+            boardView.cardViews = setGame.cardsOnTable.map { setCard in
+                let cardView = CardView()   // should I use var?
+                
+                let deckOrigin = deckImage.convert(deckImage.bounds.origin, to: boardView)
+                cardView.frame.origin = deckOrigin
+                cardView.frame.size = deckImage.frame.size
+                
+                cardView.symbolInt = setCard.symbol.rawValue
+                cardView.fillingInt = setCard.shading.rawValue
+                cardView.colorInt = setCard.color.rawValue
+                cardView.number = setCard.number.rawValue
+                
+                let tap = UITapGestureRecognizer(target: self,
+                                                 action: #selector(selectOrDeselectCard(byHandlingGestureRecognizedBy:))
+                )
+                cardView.addGestureRecognizer(tap)
+                return cardView
+            }
         }
     }
     
@@ -99,13 +109,13 @@ class ViewController: UIViewController {
     }
     
     
-    private func configureDealThreeMoreCardsButtonClickability() {
-        if setGame.deck.cardsCount == 0 {
-            dealThreeMoreCardsButton.isEnabled = false
-        } else {
-            dealThreeMoreCardsButton.isEnabled = true
-        }
-    }
+//    private func configureDealThreeMoreCardsButtonClickability() {
+//        if setGame.deck.cardsCount == 0 {
+//            dealThreeMoreCardsButton.isEnabled = false
+//        } else {
+//            dealThreeMoreCardsButton.isEnabled = true
+//        }
+//    }
 
     
     private func updateDeckCountLabel() {

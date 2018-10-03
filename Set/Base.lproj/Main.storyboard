@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,29 +20,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4lM-ia-J9E" customClass="BoardView" customModule="Set" customModuleProvider="target">
-                                <rect key="frame" x="10" y="30" width="355" height="589"/>
+                                <rect key="frame" x="10" y="30" width="355" height="519"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9oy-sg-3og">
-                                <rect key="frame" x="10" y="627" width="355" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9oy-sg-3og">
+                                <rect key="frame" x="10" y="557" width="355" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deck: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KG-e7-rkB">
-                                        <rect key="frame" x="0.0" y="0.0" width="115" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="136.5" height="100"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYY-lK-kbA" customClass="ControlButton" customModule="Set" customModuleProvider="target">
-                                        <rect key="frame" x="120" y="0.0" width="115" height="30"/>
-                                        <state key="normal" title="Deal 3 +">
-                                            <color key="titleColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pressDealThreeMoreCardsButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GqH-9e-nnd"/>
-                                        </connections>
-                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardBack" translatesAutoresizingMaskIntoConstraints="NO" id="jA0-6o-Jgu">
+                                        <rect key="frame" x="141.5" y="0.0" width="72" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="jA0-6o-Jgu" secondAttribute="height" id="FGi-FX-4YM"/>
+                                            <constraint firstAttribute="width" secondItem="jA0-6o-Jgu" secondAttribute="height" multiplier="5:7" id="qWB-L3-rzT"/>
+                                            <constraint firstAttribute="height" constant="100" id="tDe-D6-FXT"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="FGi-FX-4YM"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUa-1z-aer" customClass="ControlButton" customModule="Set" customModuleProvider="target">
-                                        <rect key="frame" x="240" y="0.0" width="115" height="30"/>
+                                        <rect key="frame" x="218.5" y="0.0" width="136.5" height="100"/>
                                         <state key="normal" title="New Game">
                                             <color key="titleColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -50,6 +55,9 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="jA0-6o-Jgu" firstAttribute="centerX" secondItem="9oy-sg-3og" secondAttribute="centerX" id="t1O-1c-F2g"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.52156862745098043" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -72,8 +80,9 @@
                     </view>
                     <connections>
                         <outlet property="boardView" destination="4lM-ia-J9E" id="fo3-9m-Z0I"/>
-                        <outlet property="dealThreeMoreCardsButton" destination="CYY-lK-kbA" id="yG7-TO-Az2"/>
+                        <outlet property="bottomStackView" destination="9oy-sg-3og" id="YUB-HT-Bif"/>
                         <outlet property="deckCountLabel" destination="5KG-e7-rkB" id="hXt-PF-uMa"/>
+                        <outlet property="deckImage" destination="jA0-6o-Jgu" id="kk6-Hi-Z9g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -91,4 +100,7 @@
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cardBack" width="481" height="676"/>
+    </resources>
 </document>
