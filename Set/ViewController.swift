@@ -39,8 +39,11 @@ class ViewController: UIViewController {
 //    @IBAction func pressDealThreeMoreCardsButton(_ sender: UIButton) {
 //        dealThreeMoreCards()
 //    }
+    // TODO: refactor
+    // not allow clicking when animation is not completed
     @IBAction func pressNewGameButton(_ sender: UIButton) {
         setGame = SetGame()
+        boardView.cardViews = []
         updateViewFromModel()
     }
     @objc func selectOrDeselectCard(byHandlingGestureRecognizedBy recognizer: UITapGestureRecognizer) {
