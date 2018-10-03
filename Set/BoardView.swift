@@ -32,6 +32,7 @@ class BoardView: UIView {
         }
     }
     
+    // TODO: group all number into a struct, and may add methods at intermidate abstraction level
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -45,6 +46,13 @@ class BoardView: UIView {
                 animations: {
                     self.cardViews[index].frame = grid[index]!.insetBy(dx: Layout.verticalInterCardDistance,
                                                                        dy: Layout.horizonalInterCardDistance)
+                },
+                completion: { _ in
+                    UIView.transition(with: self.cardViews[index],
+                                      duration: 0.4,
+                                      options: [.transitionFlipFromLeft],
+                                      animations: { self.cardViews[index].isFaceUp = true }
+                    )
                 }
             )
 
