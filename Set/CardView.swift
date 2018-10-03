@@ -13,6 +13,7 @@ class CardView: UIView {
     
     var isSelected = false { didSet {setNeedsDisplay()} }
     var isMatched = false { didSet {setNeedsDisplay()} }
+    var isFaceUp = false { didSet {setNeedsDisplay()} }
     
     @IBInspectable
     var symbolInt: Int = 1 {
@@ -90,18 +91,23 @@ class CardView: UIView {
         Colors.background.setFill()
         roundedRect.fill()
         
-        if isSelected && !isMatched {
-            layer.borderColor = Colors.selected.cgColor
-            layer.borderWidth = bounds.height * SizeRatio.borderWidthToBoundsHeight
-            layer.cornerRadius = bounds.height * SizeRatio.cornerRadiusToBoundsHeight
-
+        if isFaceUp {
+            if isSelected && !isMatched {
+                layer.borderColor = Colors.selected.cgColor
+                layer.borderWidth = bounds.height * SizeRatio.borderWidthToBoundsHeight
+                layer.cornerRadius = bounds.height * SizeRatio.cornerRadiusToBoundsHeight
+            }
+            if isMatched {
+                Colors.matched.setFill()
+                roundedRect.fill()
+            }
+            
+            drawPips()
+        } else {
+            if let cardBackImage = UIImage(named: "cardBack", in: Bundle(for: self.classForCoder), compatibleWith: traitCollection) {
+                cardBackImage.draw(in: bounds)
+            }
         }
-        if isMatched {
-            Colors.matched.setFill()
-            roundedRect.fill()
-        }
-        
-        drawPips()
     }
     
     private func drawPips() {
