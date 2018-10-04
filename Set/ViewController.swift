@@ -73,7 +73,8 @@ class ViewController: UIViewController {
         updateDeckCountLabel()
     }
     
-//    Can I not wipe out all card view then build from scratch?
+
+    // TODO: refactor duplicate code
     private func updateCardsFromModel() {
         // viewDidLoad - deal cards
         if boardView.cardViews.count == 0 {
@@ -95,6 +96,27 @@ class ViewController: UIViewController {
                 cardView.addGestureRecognizer(tap)
                 return cardView
             }
+        } else if setGame.cardsOnTable.count == boardView.cardViews.count + 3 {
+            let lastIndex = setGame.cardsOnTable.index(of: setGame.cardsOnTable.last!)!
+            let threeNewCards: [CardView] = setGame.cardsOnTable[lastIndex-2...lastIndex].map { setCard in
+                let cardView = CardView()   // should I use var?
+                
+                let deckOrigin = deckImage.convert(deckImage.bounds.origin, to: boardView)
+                cardView.frame.origin = deckOrigin
+                cardView.frame.size = deckImage.frame.size
+                
+                cardView.symbolInt = setCard.symbol.rawValue
+                cardView.fillingInt = setCard.shading.rawValue
+                cardView.colorInt = setCard.color.rawValue
+                cardView.number = setCard.number.rawValue
+                
+                let tap = UITapGestureRecognizer(target: self,
+                                                 action: #selector(selectOrDeselectCard(byHandlingGestureRecognizedBy:))
+                )
+                cardView.addGestureRecognizer(tap)
+                return cardView
+            }
+            boardView.cardViews.append(contentsOf: threeNewCards)
         }
     }
     
