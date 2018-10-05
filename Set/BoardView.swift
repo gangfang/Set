@@ -39,8 +39,14 @@ class BoardView: UIView {
         grid.cellCount = cardViews.count
         
         for index in cardViews.indices {
-            cardViews[index].frame = grid[index]!.insetBy(dx: Layout.verticalInterCardDistance,
-                                                          dy: Layout.horizonalInterCardDistance)
+            UIViewPropertyAnimator.runningPropertyAnimator(
+                withDuration: 0.8,
+                delay: TimeInterval(index) * 0.2,
+                animations: {
+                    self.cardViews[index].frame = grid[index]!.insetBy(dx: Layout.verticalInterCardDistance,
+                                                                       dy: Layout.horizonalInterCardDistance)
+                }
+            )
             cardViews[index].backgroundColor = .clear
             cardViews[index].isOpaque = false
         }
@@ -53,3 +59,18 @@ class BoardView: UIView {
         static let horizonalInterCardDistance: CGFloat = 2.5
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
