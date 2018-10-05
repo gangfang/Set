@@ -86,7 +86,14 @@ class CardView: UIView {
     
     
     override func draw(_ rect: CGRect) {
-        let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: bounds.height * SizeRatio.cornerRadiusToBoundsHeight)
+        drawBorderAndBackground()
+        drawPips()
+    }
+    
+    
+    private func drawBorderAndBackground() {
+        let roundedRect = UIBezierPath(roundedRect: bounds,
+                                       cornerRadius: bounds.height * SizeRatio.cornerRadiusToBoundsHeight)
         Colors.background.setFill()
         roundedRect.fill()
         
@@ -102,9 +109,8 @@ class CardView: UIView {
             Colors.matched.setFill()
             roundedRect.fill()
         }
-        
-        drawPips()
     }
+    
     
     private func drawPips() {
         color.setFill()
