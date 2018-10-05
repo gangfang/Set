@@ -64,13 +64,13 @@ class ViewController: UIViewController {
     
     
     private func updateViewFromModel() {
-        updateCardsFromModel()
+        updateCardViewsFromModel()
 //        configureDealThreeMoreCardsButtonClickability()
         updateDeckCountLabel()
     }
     
 
-    private func updateCardsFromModel() {
+    private func updateCardViewsFromModel() {
         if boardView.cardViewsCount > setGame.cardsCount {
             boardView.cardViews = Array(boardView.cardViews[..<setGame.cardsCount])
         }
