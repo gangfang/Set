@@ -72,26 +72,18 @@ class ViewController: UIViewController {
     
 //    Can I not wipe out all card view then build from scratch?
     private func updateCardsFromModel() {
-        // viewDidLoad - deal cards
-        if boardView.cardViews.count == 0 {
-            boardView.cardViews = setGame.cardsOnTable.map { setCard in
-                let cardView = CardView()   // should I use var?
-                
-                let deckOrigin = deckImage.convert(deckImage.bounds.origin, to: boardView)
-                cardView.frame.origin = deckOrigin
-                cardView.frame.size = deckImage.frame.size
-                
-                cardView.symbolInt = setCard.symbol.rawValue
-                cardView.fillingInt = setCard.shading.rawValue
-                cardView.colorInt = setCard.color.rawValue
-                cardView.number = setCard.number.rawValue
-                
-                let tap = UITapGestureRecognizer(target: self,
-                                                 action: #selector(selectOrDeselectCard(byHandlingGestureRecognizedBy:))
-                )
-                cardView.addGestureRecognizer(tap)
-                return cardView
-            }
+        boardView.cardViews = setGame.cardsOnTable.map { setCard in
+            let cardView = CardView()   // should I use var?
+            cardView.symbolInt = setCard.symbol.rawValue
+            cardView.fillingInt = setCard.shading.rawValue
+            cardView.colorInt = setCard.color.rawValue
+            cardView.number = setCard.number.rawValue
+            
+            let tap = UITapGestureRecognizer(target: self,
+                                             action: #selector(selectOrDeselectCard(byHandlingGestureRecognizedBy:))
+            )
+            cardView.addGestureRecognizer(tap)
+            return cardView
         }
     }
     
