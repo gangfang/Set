@@ -40,11 +40,11 @@ class BoardView: UIView {
         
         for index in cardViews.indices {
             UIViewPropertyAnimator.runningPropertyAnimator(
-                withDuration: 0.8,
-                delay: TimeInterval(index) * 0.2,
+                withDuration: Animation.flyDuration,
+                delay: Animation.delayFactor * TimeInterval(index),
                 animations: {
-                    self.cardViews[index].frame = grid[index]!.insetBy(dx: Layout.verticalInterCardDistance,
-                                                                       dy: Layout.horizonalInterCardDistance)
+                    self.cardViews[index].frame = grid[index]!.insetBy(dx: Layout.spacingDx,
+                                                                       dy: Layout.spacingDy)
                 }
             )
             cardViews[index].backgroundColor = .clear
@@ -53,10 +53,16 @@ class BoardView: UIView {
     }
     
     
+    
+    
     private struct Layout {
         static let aspectRatio: CGFloat = 0.7
-        static let verticalInterCardDistance: CGFloat = 2.5
-        static let horizonalInterCardDistance: CGFloat = 2.5
+        static let spacingDx: CGFloat = 2.5
+        static let spacingDy: CGFloat = 2.5
+    }
+    private struct Animation {
+        static let flyDuration: TimeInterval = 0.8
+        static let delayFactor: Double = 0.2
     }
 }
 
