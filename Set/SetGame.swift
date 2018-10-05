@@ -9,15 +9,18 @@
 import Foundation
 
 class SetGame {
+    let startGameCardsCount = 12
     var deck = SetCardDeck()
     var cardsOnTable = [SetCard]()
     var selectedCards = [SetCard]()
     var discardPile = [SetCard]()
     var currentlyAMatch = false
-    let initialNumberOfCardsOnTable = 12
+    var cardsCount: Int {
+        return cardsOnTable.count
+    }
     
     init() {
-        drawFromDeck(initialNumberOfCardsOnTable)
+        drawFromDeck(numberOfCards: startGameCardsCount)
     }
     
     
@@ -117,13 +120,12 @@ class SetGame {
         deck.putBack(cardsOnTable)
         deck.shuffle()
         
-        let numberOfCardsOnTable = cardsOnTable.count
         cardsOnTable = []
-        drawFromDeck(numberOfCardsOnTable)
+        drawFromDeck(numberOfCards: cardsCount)
     }
     
     
-    private func drawFromDeck(_ numberOfCards: Int) {
+    private func drawFromDeck(numberOfCards: Int) {
         for _ in 0..<numberOfCards {
             if let aCardFromDeck = deck.draw() {
                 cardsOnTable.append(aCardFromDeck)

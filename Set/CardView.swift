@@ -90,11 +90,13 @@ class CardView: UIView {
         Colors.background.setFill()
         roundedRect.fill()
         
+        layer.borderColor = nil
+        layer.borderWidth = 0.0
+        layer.cornerRadius = 0.0
         if isSelected && !isMatched {
             layer.borderColor = Colors.selected.cgColor
             layer.borderWidth = bounds.height * SizeRatio.borderWidthToBoundsHeight
             layer.cornerRadius = bounds.height * SizeRatio.cornerRadiusToBoundsHeight
-
         }
         if isMatched {
             Colors.matched.setFill()

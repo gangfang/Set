@@ -19,6 +19,10 @@ class BoardView: UIView {
             setNeedsLayout()
         }
     }
+    var cardViewsCount: Int {
+        return cardViews.count
+    }
+    
     
     private func removeSubviews() {
         for cardView in cardViews {
@@ -36,7 +40,7 @@ class BoardView: UIView {
         super.layoutSubviews()
         
         var grid = Grid(layout: .aspectRatio(Layout.aspectRatio), frame: bounds)
-        grid.cellCount = cardViews.count
+        grid.cellCount = cardViewsCount
         
         for index in cardViews.indices {
             UIViewPropertyAnimator.runningPropertyAnimator(

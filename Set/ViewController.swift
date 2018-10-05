@@ -65,40 +65,56 @@ class ViewController: UIViewController {
     
     private func updateViewFromModel() {
         updateCardsFromModel()
-        updateSelectedCardsFromModel()
 //        configureDealThreeMoreCardsButtonClickability()
         updateDeckCountLabel()
     }
     
-//    Can I not wipe out all card view then build from scratch?
+
     private func updateCardsFromModel() {
-        boardView.cardViews = setGame.cardsOnTable.map { setCard in
-            let cardView = CardView()   // should I use var?
-            cardView.symbolInt = setCard.symbol.rawValue
-            cardView.fillingInt = setCard.shading.rawValue
-            cardView.colorInt = setCard.color.rawValue
-            cardView.number = setCard.number.rawValue
-            
-            let tap = UITapGestureRecognizer(target: self,
-                                             action: #selector(selectOrDeselectCard(byHandlingGestureRecognizedBy:))
-            )
-            cardView.addGestureRecognizer(tap)
-            return cardView
+        if boardView.cardViewsCount > setGame.cardsCount {
+            boardView.cardViews = Array(boardView.cardViews[..<setGame.cardsCount])
         }
-    }
-    
-    
-    private func updateSelectedCardsFromModel() {
-        for selectedCard in setGame.selectedCards {
-            if let selectedCardIndex = setGame.cardsOnTable.index(of: selectedCard) {
-                let selectedCardView = boardView.cardViews[selectedCardIndex]
-                selectedCardView.isSelected = true
-                if setGame.currentlyAMatch {
-                    selectedCardView.isMatched = true
-                }
+        
+        let oldCardsCount = boardView.cardViewsCount
+        
+        for index in setGame.cardsOnTable.indices {
+            let setCard = setGame.cardsOnTable[index]
+            if index < oldCardsCount {
+                let cardView = boardView.cardViews[index]
+                updateCardView(cardView, for: setCard)
+            } else {
+                let cardView = CardView()   // should I use var?
+                
+                updateCardView(cardView, for: setCard)
+                addTapGestureFor(cardView)
+                
+                boardView.cardViews.append(cardView)
             }
         }
     }
+    
+
+    private func updateCardView(_ cardView: CardView, for setCard: SetCard) {
+        cardView.symbolInt = setCard.symbol.rawValue
+        cardView.fillingInt = setCard.shading.rawValue
+        cardView.colorInt = setCard.color.rawValue
+        cardView.number = setCard.number.rawValue
+        
+        cardView.isSelected = setGame.selectedCards.contains(setCard)
+        if setGame.currentlyAMatch && cardView.isSelected {
+            cardView.isMatched = true
+        } else {
+            cardView.isMatched = false
+        }
+    }
+    
+    
+    private func addTapGestureFor(_ cardView: CardView) {
+        let tap = UITapGestureRecognizer(target: self,
+                                         action: #selector(selectOrDeselectCard(byHandlingGestureRecognizedBy:)))
+        cardView.addGestureRecognizer(tap)
+    }
+
     
     
 //    private func configureDealThreeMoreCardsButtonClickability() {
