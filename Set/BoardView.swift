@@ -45,7 +45,7 @@ class BoardView: UIView {
         for index in cardViews.indices {
             UIViewPropertyAnimator.runningPropertyAnimator(
                 withDuration: Animation.flyDuration,
-                delay: Animation.delayFactor * TimeInterval(index),
+                delay: 0,
                 animations: {
                     self.cardViews[index].frame = grid[index]!.insetBy(dx: Layout.spacingDx,
                                                                        dy: Layout.spacingDy)
@@ -64,9 +64,8 @@ class BoardView: UIView {
         static let spacingDx: CGFloat = 2.5
         static let spacingDy: CGFloat = 2.5
     }
-    private struct Animation {
-        static let flyDuration: TimeInterval = 0.8
-        static let delayFactor: Double = 0.2
+    struct Animation {
+        static let flyDuration: TimeInterval = 0.25
     }
 }
 

@@ -11,6 +11,12 @@ import UIKit
 class ViewController: UIViewController {
 
     var setGame = SetGame()
+    var cardViewsToDeal: [CardView] {
+        return boardView.cardViews.filter { $0.alpha == 0 }
+    }
+    var deckFrame: CGRect {
+        return view.convert(deckImage.frame, to: view)
+    }
     
     @IBOutlet weak var boardView: BoardView!
 //    @IBOutlet weak var dealThreeMoreCardsButton: UIButton!
@@ -87,10 +93,14 @@ class ViewController: UIViewController {
                 
                 updateCardView(cardView, for: setCard)
                 addTapGestureFor(cardView)
-                
+                cardView.alpha = 0
                 boardView.cardViews.append(cardView)
             }
         }
+        
+        // fly away animation
+        
+        dealCardViews()
     }
     
 
@@ -115,6 +125,20 @@ class ViewController: UIViewController {
         cardView.addGestureRecognizer(tap)
     }
 
+    
+    private func dealCardViews() {
+        var currentDealCard = 0
+        
+        Timer.scheduledTimer(
+            withTimeInterval: BoardView.Animation.flyDuration,
+            repeats: false) { _ in
+                for  cardView in self.cardViewsToDeal {
+                    cardView.animateDeal(from: self.deckFrame,
+                                         delay: 0.2*TimeInterval(currentDealCard))
+                    currentDealCard += 1
+                }
+            }
+    }
     
     
 //    private func configureDealThreeMoreCardsButtonClickability() {

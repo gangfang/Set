@@ -84,6 +84,17 @@ class CardView: UIView {
     
     
     
+    func animateDeal(from deckFrame: CGRect, delay: TimeInterval) {
+        let finalFrame = frame
+        
+        frame = deckFrame
+        alpha = 1
+        UIViewPropertyAnimator.runningPropertyAnimator(
+            withDuration: 0.2,
+            delay: delay,
+            animations: { self.frame = finalFrame })
+    }
+    
     
     override func draw(_ rect: CGRect) {
         drawBorderAndBackground()
