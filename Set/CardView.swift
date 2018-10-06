@@ -91,13 +91,13 @@ class CardView: UIView {
         frame = deckFrame
         alpha = 1
         UIViewPropertyAnimator.runningPropertyAnimator(
-            withDuration: 0.5,
+            withDuration: AnimationDuration.fly,
             delay: delay,
             animations: { self.frame = finalFrame }
         ) { _ in
             UIView.transition(
                 with: self,
-                duration: 0.4,
+                duration: AnimationDuration.flip,
                 options: [.transitionFlipFromLeft],
                 animations: { self.isFaceUp = true })
         }
@@ -304,6 +304,12 @@ class CardView: UIView {
     
     private var interPipHeight: CGFloat {
         return (faceFrame.height - 3 * pipHeight) / 2
+    }
+    
+    
+    private struct AnimationDuration {
+        static let fly: TimeInterval = 0.6
+        static let flip: TimeInterval = 0.6
     }
 }
 
