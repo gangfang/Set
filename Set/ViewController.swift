@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         return boardView.cardViews.filter { $0.alpha == 0 }
     }
     var deckFrame: CGRect {
-        return view.convert(deckImage.frame, to: view)
+        return bottomStackView.convert(deckImage.frame, to: boardView)
     }
     
     @IBOutlet weak var boardView: BoardView!
