@@ -91,9 +91,16 @@ class CardView: UIView {
         frame = deckFrame
         alpha = 1
         UIViewPropertyAnimator.runningPropertyAnimator(
-            withDuration: 0.2,
+            withDuration: 0.5,
             delay: delay,
-            animations: { self.frame = finalFrame })
+            animations: { self.frame = finalFrame }
+        ) { _ in
+            UIView.transition(
+                with: self,
+                duration: 0.4,
+                options: [.transitionFlipFromLeft],
+                animations: { self.isFaceUp = true })
+        }
     }
     
     
