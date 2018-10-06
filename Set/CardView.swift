@@ -13,6 +13,7 @@ class CardView: UIView {
     
     var isSelected = false { didSet {setNeedsDisplay()} }
     var isMatched = false { didSet {setNeedsDisplay()} }
+    var isFaceUp = false { didSet {setNeedsDisplay()} }
     
     @IBInspectable
     var symbolInt: Int = 1 {
@@ -97,8 +98,12 @@ class CardView: UIView {
     
     
     override func draw(_ rect: CGRect) {
-        drawBorderAndBackground()
-        drawPips()
+        if !isFaceUp {
+            drawCardBack()
+        } else {
+            drawBorderAndBackground()
+            drawPips()
+        }
     }
     
     
@@ -119,6 +124,13 @@ class CardView: UIView {
         if isMatched {
             Colors.matched.setFill()
             roundedRect.fill()
+        }
+    }
+    
+    
+    private func drawCardBack() {
+        if let cardBackImage = UIImage(named: "cardBack") {
+            cardBackImage.draw(in: bounds)
         }
     }
     
