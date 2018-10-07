@@ -6,6 +6,8 @@
 //  Copyright © 2018 gfang. All rights reserved.
 //
 
+// tasks: 1. animate dealing when replacing matching cards with new cards
+
 import UIKit
 
 class ViewController: UIViewController {
@@ -19,9 +21,8 @@ class ViewController: UIViewController {
     }
     
     @IBOutlet weak var boardView: BoardView!
-//    @IBOutlet weak var dealThreeMoreCardsButton: UIButton!
-    @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet weak var bottomStackView: UIStackView!
+    @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet weak var deckCountLabel: UILabel!
     
     
@@ -42,9 +43,14 @@ class ViewController: UIViewController {
             break
         }
     }
-//    @IBAction func pressDealThreeMoreCardsButton(_ sender: UIButton) {
-//        dealThreeMoreCards()
-//    }
+    @IBAction func tapDeckToDealThreeMoreCards(_ sender: UITapGestureRecognizer) {
+        switch sender.state {
+        case .ended:
+            dealThreeMoreCards()
+        default:
+            break
+        }
+    }
     @IBAction func pressNewGameButton(_ sender: UIButton) {
         setGame = SetGame()
         updateViewFromModel()
@@ -71,7 +77,6 @@ class ViewController: UIViewController {
     
     private func updateViewFromModel() {
         updateCardViewsFromModel()
-//        configureDealThreeMoreCardsButtonClickability()
         updateDeckCountLabel()
     }
     
@@ -139,15 +144,6 @@ class ViewController: UIViewController {
                 }
             }
     }
-    
-    
-//    private func configureDealThreeMoreCardsButtonClickability() {
-//        if setGame.deck.cardsCount == 0 {
-//            dealThreeMoreCardsButton.isEnabled = false
-//        } else {
-//            dealThreeMoreCardsButton.isEnabled = true
-//        }
-//    }
 
     
     private func updateDeckCountLabel() {

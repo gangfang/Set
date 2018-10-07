@@ -32,8 +32,9 @@
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardBack" translatesAutoresizingMaskIntoConstraints="NO" id="jA0-6o-Jgu">
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardBack" translatesAutoresizingMaskIntoConstraints="NO" id="jA0-6o-Jgu">
                                         <rect key="frame" x="141.5" y="0.0" width="72" height="100"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="jA0-6o-Jgu" secondAttribute="height" id="FGi-FX-4YM"/>
                                             <constraint firstAttribute="width" secondItem="jA0-6o-Jgu" secondAttribute="height" multiplier="5:7" id="qWB-L3-rzT"/>
@@ -44,6 +45,9 @@
                                                 <exclude reference="FGi-FX-4YM"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="qxs-v5-4Ga" appends="YES" id="lGx-ra-O81"/>
+                                        </connections>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUa-1z-aer" customClass="ControlButton" customModule="Set" customModuleProvider="target">
                                         <rect key="frame" x="218.5" y="0.0" width="136.5" height="100"/>
@@ -55,6 +59,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="jA0-6o-Jgu" firstAttribute="centerX" secondItem="9oy-sg-3og" secondAttribute="centerX" id="t1O-1c-F2g"/>
                                 </constraints>
@@ -96,6 +101,11 @@
                         <action selector="rotateToReshuffleCards:" destination="BYZ-38-t0r" id="7CP-g6-Bd7"/>
                     </connections>
                 </rotationGestureRecognizer>
+                <tapGestureRecognizer id="qxs-v5-4Ga">
+                    <connections>
+                        <action selector="tapDeckToDealThreeMoreCards:" destination="BYZ-38-t0r" id="50F-Ia-U2S"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
