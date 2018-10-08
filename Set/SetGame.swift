@@ -72,7 +72,6 @@ class SetGame {
     
     
     private func replaceOrRemoveMatchedCards() {
-        print("first")
         if deck.cardsCount > 0 {
             let new = [deck.draw()!, deck.draw()!, deck.draw()!]
             cardsOnTable.replace(old: selectedCards, with: new)

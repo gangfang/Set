@@ -6,8 +6,6 @@
 //  Copyright © 2018 gfang. All rights reserved.
 //
 
-// tasks: 1. animate dealing when replacing matching cards with new cards
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -83,8 +81,8 @@ class ViewController: UIViewController {
     
 
     private func updateCardViewsFromModel() {
+        // TODO: refactor
         if boardView.cardViewsCount > setGame.cardsCount {
-            print("second")
             boardView.cardViews = boardView.cardViews.filter { (cardView) -> Bool in
                 return setGame.cardsOnTable.contains(where: { (setCard) -> Bool in
                     return cardView.colorInt == setCard.color.rawValue &&
@@ -150,9 +148,7 @@ class ViewController: UIViewController {
 
     
     private func dealCardViews() {
-        guard !setGame.currentlyAMatch &&
-              setGame.deck.cardsCount > 0 &&
-              cardViewsToDeal.count > 0 else { return }
+        guard !setGame.currentlyAMatch && cardViewsToDeal.count > 0 else { return }
         var currentDealCard = 0
         
         Timer.scheduledTimer(
