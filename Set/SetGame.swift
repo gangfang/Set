@@ -53,6 +53,10 @@ class SetGame {
     
     // TODO: may need further refactoring after intial refactoring
     private func selectACard(at cardNumber: Int) {
+        // cardsOnTableBeforeChange is useful when matched cards are
+        // removed from cardsOnTable, selectedCards array needs the
+        // original copy of cardsOnTable
+        let cardsOnTableBeforeChange = cardsOnTable
         if selectedCards.count == 3 {
             if currentlyAMatch {
                 replaceOrRemoveMatchedCards()
@@ -61,13 +65,14 @@ class SetGame {
             deselectAllSelectedCards()
         }
         
-        selectedCards.append(cardsOnTable[cardNumber])
+        selectedCards.append(cardsOnTableBeforeChange[cardNumber])
         
         currentlyAMatch = SetGame.isAMatch(selectedCards)
     }
     
     
     private func replaceOrRemoveMatchedCards() {
+        print("first")
         if deck.cardsCount > 0 {
             let new = [deck.draw()!, deck.draw()!, deck.draw()!]
             cardsOnTable.replace(old: selectedCards, with: new)

@@ -308,8 +308,8 @@ class CardView: UIView {
     
     
     private struct AnimationDuration {
-        static let fly: TimeInterval = 0.6
-        static let flip: TimeInterval = 0.6
+        static let fly: TimeInterval = 0.1
+        static let flip: TimeInterval = 0.1
     }
 }
 

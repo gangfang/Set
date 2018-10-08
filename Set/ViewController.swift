@@ -51,6 +51,7 @@ class ViewController: UIViewController {
             break
         }
     }
+    // TODO: fix, deal animation occurs where cards fly to spots previously occupied by matched cards
     @IBAction func pressNewGameButton(_ sender: UIButton) {
         setGame = SetGame()
         updateViewFromModel()
@@ -83,7 +84,15 @@ class ViewController: UIViewController {
 
     private func updateCardViewsFromModel() {
         if boardView.cardViewsCount > setGame.cardsCount {
-            boardView.cardViews = Array(boardView.cardViews[..<setGame.cardsCount])
+            print("second")
+            boardView.cardViews = boardView.cardViews.filter { (cardView) -> Bool in
+                return setGame.cardsOnTable.contains(where: { (setCard) -> Bool in
+                    return cardView.colorInt == setCard.color.rawValue &&
+                           cardView.fillingInt == setCard.shading.rawValue &&
+                           cardView.symbolInt == setCard.symbol.rawValue &&
+                           cardView.number == setCard.number.rawValue
+                })
+            }
         }
         
         let oldCardsCount = boardView.cardViewsCount
@@ -94,11 +103,13 @@ class ViewController: UIViewController {
                 let cardView = boardView.cardViews[index]
                 updateCardView(cardView, for: setCard)
             } else {
+                // TODO: make CardView initializer that create CardView with alpha of 0
                 let cardView = CardView()   // should I use var?
+                cardView.alpha = 0
                 
                 updateCardView(cardView, for: setCard)
                 addTapGestureFor(cardView)
-                cardView.alpha = 0
+                
                 boardView.cardViews.append(cardView)
             }
         }
@@ -118,6 +129,13 @@ class ViewController: UIViewController {
         cardView.isSelected = setGame.selectedCards.contains(setCard)
         if setGame.currentlyAMatch && cardView.isSelected {
             cardView.isMatched = true
+            
+            cardView.alpha = 0
+            // refactor
+            cardView.isFaceUp = false
+            cardView.layer.borderColor = nil
+            cardView.layer.borderWidth = 0.0
+            cardView.layer.cornerRadius = 0.0
         } else {
             cardView.isMatched = false
         }
@@ -132,10 +150,13 @@ class ViewController: UIViewController {
 
     
     private func dealCardViews() {
+        guard !setGame.currentlyAMatch &&
+              setGame.deck.cardsCount > 0 &&
+              cardViewsToDeal.count > 0 else { return }
         var currentDealCard = 0
         
         Timer.scheduledTimer(
-            withTimeInterval: BoardView.Animation.flyDuration,
+            withTimeInterval: BoardView.AnimationDuration.fly,
             repeats: false) { _ in
                 for  cardView in self.cardViewsToDeal {
                     cardView.animateDeal(from: self.deckFrame,
@@ -159,6 +180,9 @@ class ViewController: UIViewController {
         boardView.isOpaque = false
     }
 }
+
+
+
 
 
 
