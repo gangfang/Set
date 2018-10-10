@@ -12,10 +12,10 @@ import UIKit
 struct Constants {
     // MARK: Constants for animation
     struct FlyAwayCard {
-        static let elasticity: CGFloat = 1.0
-        static let resistance: CGFloat = 0.0
+        static let elasticity: CGFloat = 0.7
+        static let resistance: CGFloat = 0.2
         static let pushAngleRandom: CGFloat = (2 * CGFloat.pi).arc4random
-        static let pushMagnitudeRandom: CGFloat = CGFloat(100.0) + CGFloat(2.0).arc4random
+        static let pushMagnitudeRandom: CGFloat = CGFloat(50.0) + CGFloat(50.0).arc4random
     }
     
     struct Duration {
