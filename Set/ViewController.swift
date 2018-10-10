@@ -109,7 +109,8 @@ class ViewController: UIViewController {
                 updateCardView(cardView, for: setCard)
             } else {
                 // TODO: make CardView initializer that create CardView with alpha of 0
-                let cardView = CardView()   // should I use var?
+                let cardView = CardView()
+                
                 cardView.alpha = 0
                 
                 updateCardView(cardView, for: setCard)
@@ -214,18 +215,6 @@ class ViewController: UIViewController {
 
 
 
-
-
-
-
-
-
-extension UIView {
-    func duplicate() -> UIView {
-        let archive = NSKeyedArchiver.archivedData(withRootObject: self)
-        return NSKeyedUnarchiver.unarchiveObject(with: archive) as! UIView
-    }
-}
 
 
 

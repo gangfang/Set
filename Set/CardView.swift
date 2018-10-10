@@ -84,6 +84,23 @@ class CardView: UIView {
     }
     
     
+    func duplicate() -> CardView {
+        let copy = CardView()
+        copy.isSelected =  false
+        copy.isFaceUp = true
+        
+        copy.symbolInt = symbolInt
+        copy.fillingInt = fillingInt
+        copy.colorInt = colorInt
+        copy.number = number
+        
+        copy.bounds = bounds
+        copy.frame = frame
+        copy.alpha = 1
+        return copy
+    }
+    
+    
     
     func animateDeal(from deckFrame: CGRect, delay: TimeInterval) {
         let finalFrame = frame
