@@ -19,6 +19,7 @@
 		A4672B5020E09AB600E23D42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4672B4E20E09AB600E23D42 /* LaunchScreen.storyboard */; };
 		A46A19632112CE0F0047DEAF /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46A19622112CE0F0047DEAF /* BoardView.swift */; };
 		A4BE365020E6619000E9A15D /* SetDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE364F20E6619000E9A15D /* SetDeck.swift */; };
+		A4C8BE6B216D771F000EEDBB /* tasks.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C8BE6A216D771F000EEDBB /* tasks.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		A4672B5120E09AB600E23D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A46A19622112CE0F0047DEAF /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		A4BE364F20E6619000E9A15D /* SetDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDeck.swift; sourceTree = "<group>"; };
+		A4C8BE6A216D771F000EEDBB /* tasks.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = tasks.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		A4672B4420E09AB500E23D42 /* Set */ = {
 			isa = PBXGroup;
 			children = (
+				A4C8BE6A216D771F000EEDBB /* tasks.txt */,
 				A4672B4720E09AB500E23D42 /* ViewController.swift */,
 				A44A7A4720E213F800C758E8 /* SetGame.swift */,
 				A4BE364F20E6619000E9A15D /* SetDeck.swift */,
@@ -152,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4672B5020E09AB600E23D42 /* LaunchScreen.storyboard in Resources */,
+				A4C8BE6B216D771F000EEDBB /* tasks.txt in Resources */,
 				A43EE171215DBC0500A0AF05 /* Assets.xcassets in Resources */,
 				A4672B4B20E09AB500E23D42 /* Main.storyboard in Resources */,
 			);

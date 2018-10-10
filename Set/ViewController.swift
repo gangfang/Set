@@ -17,10 +17,30 @@ class ViewController: UIViewController {
     var deckFrame: CGRect {
         return bottomStackView.convert(deckImage.frame, to: boardView)
     }
+    var discardPileFrame: CGRect {
+        return bottomStackView.convert(discardPileImage.frame, to: view)
+    }
+    
+    lazy var animator = UIDynamicAnimator(referenceView: view)
+    lazy var collisionBehavior: UICollisionBehavior = {
+        let behavior = UICollisionBehavior()
+        behavior.translatesReferenceBoundsIntoBoundary = true
+        animator.addBehavior(behavior)
+        return behavior
+    }()
+    lazy var itemBehavior: UIDynamicItemBehavior = {
+        let behavior = UIDynamicItemBehavior()
+        behavior.allowsRotation = false
+        behavior.elasticity = 1.0
+        behavior.resistance = 0
+        animator.addBehavior(behavior)
+        return behavior
+    }()
     
     @IBOutlet weak var boardView: BoardView!
     @IBOutlet weak var bottomStackView: UIStackView!
     @IBOutlet weak var deckImage: UIImageView!
+    @IBOutlet weak var discardPileImage: UIImageView!
     @IBOutlet weak var deckCountLabel: UILabel!
     
     
@@ -112,7 +132,7 @@ class ViewController: UIViewController {
             }
         }
         
-        // fly away animation
+        matchedCardsFlyAway()
         
         dealCardViews()
     }
@@ -145,12 +165,47 @@ class ViewController: UIViewController {
                                          action: #selector(selectOrDeselectCard(byHandlingGestureRecognizedBy:)))
         cardView.addGestureRecognizer(tap)
     }
-
+    
+    
+    private func matchedCardsFlyAway() {
+        // guard fly away animation from initialization where all cards originate from point (0, 0)
+        guard cardViewsToDeal.count > 0 && cardViewsToDeal[0].frame.size.width != 0 else { return }
+        let cardViewsToFly = cardViewsToDeal.map { $0.duplicate() as! CardView }
+        
+        cardViewsToFly.forEach { (cardView) in
+            view.addSubview(cardView)
+            cardView.alpha = 1
+            
+            collisionBehavior.addItem(cardView)
+            itemBehavior.addItem(cardView)
+            let push = UIPushBehavior(items: [cardView], mode: .instantaneous)
+            push.setAngle((2*CGFloat.pi).arc4random,
+                          magnitude: CGFloat(100.0)+CGFloat(2.0).arc4random)
+            push.action = { [unowned push] in
+                push.dynamicAnimator?.removeBehavior(push)
+            }
+            animator.addBehavior(push)
+            
+            
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) {_ in
+                self.collisionBehavior.dynamicAnimator?.removeAllBehaviors()
+                UIViewPropertyAnimator.runningPropertyAnimator(
+                    withDuration: 0.2,
+                    delay: 0,
+                    animations: {
+                        cardView.frame = self.discardPileFrame
+                    },
+                    completion: nil
+                )
+            }
+        }
+    }
+    
     
     private func dealCardViews() {
         guard !setGame.currentlyAMatch && cardViewsToDeal.count > 0 else { return }
         var currentDealCard = 0
-        
+
         Timer.scheduledTimer(
             withTimeInterval: BoardView.AnimationDuration.fly,
             repeats: false) { _ in
@@ -181,6 +236,15 @@ class ViewController: UIViewController {
 
 
 
+extension UIView {
+    func duplicate() -> UIView {
+        let archive = NSKeyedArchiver.archivedData(withRootObject: self)
+        return NSKeyedUnarchiver.unarchiveObject(with: archive) as! UIView
+    }
+}
+
+
+
 
 
 
@@ -199,5 +263,15 @@ extension UIColor {
         assert(blue >= 0 && blue <= 255, "Invalid blue component")
         
         self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+}
+
+
+
+
+
+extension CGFloat {
+    var arc4random: CGFloat {
+        return self * (CGFloat(arc4random_uniform(UInt32.max))/CGFloat(UInt32.max))
     }
 }

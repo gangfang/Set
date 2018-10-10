@@ -49,8 +49,22 @@
                                             <outletCollection property="gestureRecognizers" destination="qxs-v5-4Ga" appends="YES" id="lGx-ra-O81"/>
                                         </connections>
                                     </imageView>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardBack" translatesAutoresizingMaskIntoConstraints="NO" id="Yjp-Wz-HdM">
+                                        <rect key="frame" x="218.5" y="0.0" width="72" height="100"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Yjp-Wz-HdM" secondAttribute="height" id="0G3-ES-e3n"/>
+                                            <constraint firstAttribute="width" secondItem="Yjp-Wz-HdM" secondAttribute="height" multiplier="5:7" id="btn-9V-pSk"/>
+                                            <constraint firstAttribute="height" constant="100" id="fCw-w2-BeR"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="0G3-ES-e3n"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUa-1z-aer" customClass="ControlButton" customModule="Set" customModuleProvider="target">
-                                        <rect key="frame" x="218.5" y="0.0" width="136.5" height="100"/>
+                                        <rect key="frame" x="295.5" y="0.0" width="59.5" height="100"/>
                                         <state key="normal" title="New Game">
                                             <color key="titleColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -61,6 +75,7 @@
                                 </subviews>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstItem="Yjp-Wz-HdM" firstAttribute="width" secondItem="Yjp-Wz-HdM" secondAttribute="height" multiplier="5:7" id="BQz-07-cXf"/>
                                     <constraint firstItem="jA0-6o-Jgu" firstAttribute="centerX" secondItem="9oy-sg-3og" secondAttribute="centerX" id="t1O-1c-F2g"/>
                                 </constraints>
                             </stackView>
@@ -88,6 +103,7 @@
                         <outlet property="bottomStackView" destination="9oy-sg-3og" id="YUB-HT-Bif"/>
                         <outlet property="deckCountLabel" destination="5KG-e7-rkB" id="hXt-PF-uMa"/>
                         <outlet property="deckImage" destination="jA0-6o-Jgu" id="kk6-Hi-Z9g"/>
+                        <outlet property="discardPileImage" destination="Yjp-Wz-HdM" id="BZF-7a-Olb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
