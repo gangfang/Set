@@ -39,33 +39,21 @@ class BoardView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        var grid = Grid(layout: .aspectRatio(Layout.aspectRatio), frame: bounds)
+        var grid = Grid(layout: .aspectRatio(Constants.GridLayout.aspectRatio), frame: bounds)
         grid.cellCount = cardViewsCount
         
         for index in cardViews.indices {
             UIViewPropertyAnimator.runningPropertyAnimator(
-                withDuration: AnimationDuration.fly,
+                withDuration: Constants.Duration.rearrange,
                 delay: 0,
                 animations: {
-                    self.cardViews[index].frame = grid[index]!.insetBy(dx: Layout.spacingDx,
-                                                                       dy: Layout.spacingDy)
+                    self.cardViews[index].frame = grid[index]!.insetBy(dx: Constants.GridLayout.spacingDx,
+                                                                       dy: Constants.GridLayout.spacingDy)
                 }
             )
             cardViews[index].backgroundColor = .clear
             cardViews[index].isOpaque = false
         }
-    }
-    
-    
-    
-    
-    private struct Layout {
-        static let aspectRatio: CGFloat = 0.7
-        static let spacingDx: CGFloat = 2.5
-        static let spacingDy: CGFloat = 2.5
-    }
-    struct AnimationDuration {
-        static let fly: TimeInterval = 0.8
     }
 }
 

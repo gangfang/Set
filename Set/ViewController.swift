@@ -167,17 +167,13 @@ class ViewController: UIViewController {
             collect(cardView)
         }
     }
-    
-    
     private func collect(_ cardView: UIView) {
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) {_ in
+        Timer.scheduledTimer(withTimeInterval: Constants.Duration.chaosFly, repeats: false) {_ in
             self.cardBehavior.removeItem(cardView)
             UIViewPropertyAnimator.runningPropertyAnimator(
-                withDuration: 0.2,
+                withDuration: Constants.Duration.flyToDiscardPile,
                 delay: 0,
-                animations: {
-                    cardView.frame = self.discardPileFrame
-            },
+                animations: { cardView.frame = self.discardPileFrame },
                 completion: nil
             )
         }
@@ -186,15 +182,17 @@ class ViewController: UIViewController {
     
     private func dealCardViews() {
         guard !setGame.currentlyAMatch && cardViewsToDeal.count > 0 else { return }
-        var currentDealCard = 0
+        var currentDealCardIndex = 0
 
         Timer.scheduledTimer(
-            withTimeInterval: BoardView.AnimationDuration.fly,
+            withTimeInterval: Constants.Duration.rearrange,
             repeats: false) { _ in
                 for  cardView in self.cardViewsToDeal {
-                    cardView.animateDeal(from: self.deckFrame,
-                                         delay: 0.2*TimeInterval(currentDealCard))
-                    currentDealCard += 1
+                    cardView.animateDeal(
+                        from: self.deckFrame,
+                        delay: Constants.dealCardIntervalFactor*TimeInterval(currentDealCardIndex)
+                    )
+                    currentDealCardIndex += 1
                 }
             }
     }
@@ -218,14 +216,16 @@ class ViewController: UIViewController {
 
 
 
+
+
+
+
 extension UIView {
     func duplicate() -> UIView {
         let archive = NSKeyedArchiver.archivedData(withRootObject: self)
         return NSKeyedUnarchiver.unarchiveObject(with: archive) as! UIView
     }
 }
-
-
 
 
 
@@ -247,14 +247,3 @@ extension UIColor {
         self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
     }
 }
-
-
-
-
-
-extension CGFloat {
-    var arc4random: CGFloat {
-        return self * (CGFloat(arc4random_uniform(UInt32.max))/CGFloat(UInt32.max))
-    }
-}
-

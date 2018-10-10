@@ -21,6 +21,7 @@
 		A4BE365020E6619000E9A15D /* SetDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE364F20E6619000E9A15D /* SetDeck.swift */; };
 		A4C8BE6B216D771F000EEDBB /* tasks.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C8BE6A216D771F000EEDBB /* tasks.txt */; };
 		A4C8BE6F216D79AB000EEDBB /* CardBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C8BE6E216D79AB000EEDBB /* CardBehavior.swift */; };
+		A4C8BE72216D8787000EEDBB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C8BE71216D8787000EEDBB /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		A4BE364F20E6619000E9A15D /* SetDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDeck.swift; sourceTree = "<group>"; };
 		A4C8BE6A216D771F000EEDBB /* tasks.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = tasks.txt; sourceTree = "<group>"; };
 		A4C8BE6E216D79AB000EEDBB /* CardBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBehavior.swift; sourceTree = "<group>"; };
+		A4C8BE71216D8787000EEDBB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				A4C8BE6A216D771F000EEDBB /* tasks.txt */,
+				A4C8BE71216D8787000EEDBB /* Constants.swift */,
 				A4C8BE6E216D79AB000EEDBB /* CardBehavior.swift */,
 				A4672B4720E09AB500E23D42 /* ViewController.swift */,
 				A46A19622112CE0F0047DEAF /* BoardView.swift */,
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A43EE173215DCD6800A0AF05 /* ControlButton.swift in Sources */,
+				A4C8BE72216D8787000EEDBB /* Constants.swift in Sources */,
 				A46A19632112CE0F0047DEAF /* BoardView.swift in Sources */,
 				A4BE365020E6619000E9A15D /* SetDeck.swift in Sources */,
 				A4C8BE6F216D79AB000EEDBB /* CardBehavior.swift in Sources */,

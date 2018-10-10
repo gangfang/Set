@@ -91,13 +91,13 @@ class CardView: UIView {
         frame = deckFrame
         alpha = 1
         UIViewPropertyAnimator.runningPropertyAnimator(
-            withDuration: AnimationDuration.fly,
+            withDuration: Constants.Duration.flyFromDeck,
             delay: delay,
             animations: { self.frame = finalFrame }
         ) { _ in
             UIView.transition(
                 with: self,
-                duration: AnimationDuration.flip,
+                duration: Constants.Duration.flip,
                 options: [.transitionFlipFromLeft],
                 animations: { self.isFaceUp = true })
         }
@@ -116,7 +116,7 @@ class CardView: UIView {
     
     private func drawBorderAndBackground() {
         let roundedRect = UIBezierPath(roundedRect: bounds,
-                                       cornerRadius: bounds.height * SizeRatio.cornerRadiusToBoundsHeight)
+                                       cornerRadius: bounds.height * Constants.CardSizeRatio.cornerRadiusToBoundsHeight)
         Colors.background.setFill()
         roundedRect.fill()
         
@@ -125,8 +125,8 @@ class CardView: UIView {
         layer.cornerRadius = 0.0
         if isSelected && !isMatched {
             layer.borderColor = Colors.selected.cgColor
-            layer.borderWidth = bounds.height * SizeRatio.borderWidthToBoundsHeight
-            layer.cornerRadius = bounds.height * SizeRatio.cornerRadiusToBoundsHeight
+            layer.borderWidth = bounds.height * Constants.CardSizeRatio.borderWidthToBoundsHeight
+            layer.cornerRadius = bounds.height * Constants.CardSizeRatio.cornerRadiusToBoundsHeight
         }
         if isMatched {
             Colors.matched.setFill()
@@ -182,7 +182,7 @@ class CardView: UIView {
             path = pathForOval(in: rect)
         }
         
-        path.lineWidth = bounds.height * SizeRatio.pathLineWidthToBoundsHeight
+        path.lineWidth = bounds.height * Constants.CardSizeRatio.pathLineWidthToBoundsHeight
         path.stroke()
         
         switch filling {
@@ -273,43 +273,24 @@ class CardView: UIView {
         stripe.stroke()
     }
     
-    
-    
-    private struct SizeRatio {
-        static let cornerRadiusToBoundsHeight: CGFloat = 0.1
-        static let borderWidthToBoundsHeight: CGFloat = 0.035
-        static let maxFaceSizeToBoundsSize: CGFloat = 0.75
-        static let pathLineWidthToBoundsHeight: CGFloat = 0.015
-        static let pipHeightToFaceHeight: CGFloat = 0.25
-    }
-    
-    
-    private struct AspectRatio {
-        static let faceFrame: CGFloat = 0.6
-    }
+
     
     
     private var maxFaceFrame: CGRect {
-        return bounds.zoomed(by: SizeRatio.maxFaceSizeToBoundsSize)
+        return bounds.zoomed(by: Constants.CardSizeRatio.maxFaceSizeToBoundsSize)
     }
     
     private var faceFrame: CGRect {
-        let faceWidth = maxFaceFrame.height * AspectRatio.faceFrame
+        let faceWidth = maxFaceFrame.height * Constants.CardAspectRatio.faceFrame
         return maxFaceFrame.insetBy(dx: (maxFaceFrame.width-faceWidth) / 2, dy: 0)
     }
     
     private var pipHeight: CGFloat {
-        return faceFrame.height * SizeRatio.pipHeightToFaceHeight
+        return faceFrame.height * Constants.CardSizeRatio.pipHeightToFaceHeight
     }
     
     private var interPipHeight: CGFloat {
         return (faceFrame.height - 3 * pipHeight) / 2
-    }
-    
-    
-    private struct AnimationDuration {
-        static let fly: TimeInterval = 0.1
-        static let flip: TimeInterval = 0.1
     }
 }
 
