@@ -22,20 +22,7 @@ class ViewController: UIViewController {
     }
     
     lazy var animator = UIDynamicAnimator(referenceView: view)
-    lazy var collisionBehavior: UICollisionBehavior = {
-        let behavior = UICollisionBehavior()
-        behavior.translatesReferenceBoundsIntoBoundary = true
-        animator.addBehavior(behavior)
-        return behavior
-    }()
-    lazy var itemBehavior: UIDynamicItemBehavior = {
-        let behavior = UIDynamicItemBehavior()
-        behavior.allowsRotation = false
-        behavior.elasticity = 1.0
-        behavior.resistance = 0
-        animator.addBehavior(behavior)
-        return behavior
-    }()
+    lazy var cardBehavior = CardBehavior(in: animator)
     
     @IBOutlet weak var boardView: BoardView!
     @IBOutlet weak var bottomStackView: UIStackView!
@@ -176,28 +163,23 @@ class ViewController: UIViewController {
             view.addSubview(cardView)
             cardView.alpha = 1
             
-            collisionBehavior.addItem(cardView)
-            itemBehavior.addItem(cardView)
-            let push = UIPushBehavior(items: [cardView], mode: .instantaneous)
-            push.setAngle((2*CGFloat.pi).arc4random,
-                          magnitude: CGFloat(100.0)+CGFloat(2.0).arc4random)
-            push.action = { [unowned push] in
-                push.dynamicAnimator?.removeBehavior(push)
-            }
-            animator.addBehavior(push)
-            
-            
-            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) {_ in
-                self.collisionBehavior.dynamicAnimator?.removeAllBehaviors()
-                UIViewPropertyAnimator.runningPropertyAnimator(
-                    withDuration: 0.2,
-                    delay: 0,
-                    animations: {
-                        cardView.frame = self.discardPileFrame
-                    },
-                    completion: nil
-                )
-            }
+            cardBehavior.addItem(cardView)
+            collect(cardView)
+        }
+    }
+    
+    
+    private func collect(_ cardView: UIView) {
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) {_ in
+            self.cardBehavior.removeItem(cardView)
+            UIViewPropertyAnimator.runningPropertyAnimator(
+                withDuration: 0.2,
+                delay: 0,
+                animations: {
+                    cardView.frame = self.discardPileFrame
+            },
+                completion: nil
+            )
         }
     }
     
@@ -275,3 +257,4 @@ extension CGFloat {
         return self * (CGFloat(arc4random_uniform(UInt32.max))/CGFloat(UInt32.max))
     }
 }
+
