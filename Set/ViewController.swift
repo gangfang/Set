@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     var cardViewsToDeal: [CardView] {
         return boardView.cardViews.filter { $0.alpha == 0 }
     }
+    var cardViewsToFly = [CardView]()
     var deckFrame: CGRect {
         return bottomStackView.convert(deckImage.frame, to: boardView)
     }
@@ -155,27 +156,58 @@ class ViewController: UIViewController {
     }
     
     
+    // extra animation when a second card is clicked as the timer is counting down (Constants.Duration.rearrange)
+    // for MVC, don't have view dependent on other views, views should depend on model bc user interaction/input modefiy the model, not the view, and thereafter view reflects the change. If having view depends on other views, the changes pertaining to the view may not cause by the user, but the dependent is also affected.
     private func matchedCardsFlyAway() {
-        // guard fly away animation from initialization where all cards originate from point (0, 0)
-        guard cardViewsToDeal.count > 0 && cardViewsToDeal[0].frame.size.width != 0 else { return }
-        let cardViewsToFly = cardViewsToDeal.map { $0.duplicate() as! CardView }
+        let allCardsHaveValidSizeForAnimation = cardViewsToDeal.reduce(true) { (result, cardView) -> Bool in
+            let cardViewHasValidSize = (cardView.frame.size.width * cardView.frame.size.height != 0)
+            return result && cardViewHasValidSize
+        }
+        guard cardViewsToDeal.count > 0 && allCardsHaveValidSizeForAnimation else { return }
+
+//        guard !animator.isRunning else { return }
+        
+        guard setGame.currentlyAMatch else { return }
+        
+        // guard the func from executing when animation for given three cards has already done
+//        if cardViewsToFly.count > 0 {
+//            guard cardViewsToDeal[0].colorInt != cardViewsToFly[0].colorInt ||
+//                  cardViewsToDeal[0].fillingInt != cardViewsToFly[0].fillingInt ||
+//                  cardViewsToDeal[0].number != cardViewsToFly[0].number ||
+//                  cardViewsToDeal[0].symbolInt != cardViewsToFly[0].symbolInt
+//            else {
+//                cardViewsToFly = []
+//                return
+//            }
+//        }
+
+        cardViewsToFly = cardViewsToDeal.map {
+            let replica = $0.duplicate()
+            return replica
+        }
         
         cardViewsToFly.forEach { (cardView) in
             view.addSubview(cardView)
-            cardView.alpha = 1
-            
             cardBehavior.addItem(cardView)
             collect(cardView)
         }
     }
-    private func collect(_ cardView: UIView) {
-        Timer.scheduledTimer(withTimeInterval: Constants.Duration.chaosFly, repeats: false) {_ in
+    // TODO: refactor
+    private func collect(_ cardView: CardView) {
+        Timer.scheduledTimer(withTimeInterval: Constants.Duration.bounceAround, repeats: false) {_ in
             self.cardBehavior.removeItem(cardView)
+            
             UIViewPropertyAnimator.runningPropertyAnimator(
                 withDuration: Constants.Duration.flyToDiscardPile,
                 delay: 0,
                 animations: { cardView.frame = self.discardPileFrame },
-                completion: nil
+                completion: { _ in
+                    UIView.transition(
+                        with: cardView,
+                        duration: Constants.Duration.flip,
+                        options: [.transitionFlipFromLeft],
+                        animations: { cardView.isFaceUp = false })
+                }
             )
         }
     }
@@ -184,9 +216,10 @@ class ViewController: UIViewController {
     private func dealCardViews() {
         guard !setGame.currentlyAMatch && cardViewsToDeal.count > 0 else { return }
         var currentDealCardIndex = 0
-
+        
         Timer.scheduledTimer(
-            withTimeInterval: Constants.Duration.rearrange,
+            withTimeInterval: 0,
+//            withTimeInterval: Constants.Duration.rearrange,
             repeats: false) { _ in
                 for  cardView in self.cardViewsToDeal {
                     cardView.animateDeal(
