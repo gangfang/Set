@@ -86,7 +86,6 @@ class CardView: UIView {
     
     func duplicate() -> CardView {
         let copy = CardView()
-        copy.isSelected =  false
         copy.isFaceUp = true
         
         copy.symbolInt = symbolInt
@@ -97,6 +96,10 @@ class CardView: UIView {
         copy.bounds = bounds
         copy.frame = frame
         copy.alpha = 1
+        // bad code; but don't know why drawBorderAndBackground()
+        // was not drawing the roundedRect so there were 4 black corners
+        // if not using the below line
+        copy.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
         return copy
     }
     
@@ -122,11 +125,11 @@ class CardView: UIView {
     
     
     override func draw(_ rect: CGRect) {
-        if !isFaceUp {
-            drawCardBack()
-        } else {
+        if isFaceUp {
             drawBorderAndBackground()
             drawPips()
+        } else {
+            drawCardBack()
         }
     }
     
