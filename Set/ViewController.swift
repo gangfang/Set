@@ -123,7 +123,7 @@ class ViewController: UIViewController {
         
         matchedCardsFlyAway()
         
-        dealCardViews()
+        dealCardViews(rearrangementWillHappen: oldCardsCount < boardView.cardViewsCount)
     }
     
 
@@ -156,7 +156,6 @@ class ViewController: UIViewController {
     }
     
     
-    // extra animation when a second card is clicked as the timer is counting down (Constants.Duration.rearrange)
     private func matchedCardsFlyAway() {
         let allCardsHaveValidSizeForAnimation = cardViewsToDeal.reduce(true) { (result, cardView) -> Bool in
             let cardViewHasValidSize = (cardView.frame.size.width * cardView.frame.size.height != 0)
@@ -197,22 +196,22 @@ class ViewController: UIViewController {
     }
     
     
-    private func dealCardViews() {
+    private func dealCardViews(rearrangementWillHappen waitForRearrangementToFinish: Bool) {
         guard !setGame.currentlyAMatch && cardViewsToDeal.count > 0 else { return }
         var currentDealCardIndex = 0
         
         Timer.scheduledTimer(
-            withTimeInterval: 0,
-//            withTimeInterval: Constants.Duration.rearrange,
-            repeats: false) { _ in
-                for  cardView in self.cardViewsToDeal {
-                    cardView.animateDeal(
-                        from: self.deckFrame,
-                        delay: Constants.dealCardIntervalFactor*TimeInterval(currentDealCardIndex)
-                    )
-                    currentDealCardIndex += 1
-                }
+            withTimeInterval: waitForRearrangementToFinish ? Constants.Duration.rearrange : 0,
+            repeats: false
+        ) { _ in
+            for cardView in self.cardViewsToDeal {
+                cardView.animateDeal(
+                    from: self.deckFrame,
+                    delay: Constants.dealCardIntervalFactor*TimeInterval(currentDealCardIndex)
+                )
+                currentDealCardIndex += 1
             }
+        }
     }
 
     
