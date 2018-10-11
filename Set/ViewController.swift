@@ -174,6 +174,8 @@ class ViewController: UIViewController {
             cardBehavior.addItem(cardView)
             collect(cardView)
         }
+        
+        dealThreeMoreCards()
     }
     // TODO: refactor
     private func collect(_ cardView: CardView) {
