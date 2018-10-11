@@ -14,13 +14,11 @@ struct Constants {
     struct FlyAwayCard {
         static let elasticity: CGFloat = 0.7
         static let resistance: CGFloat = 0.2
-        static let pushAngleRandom: CGFloat = (2 * CGFloat.pi).arc4random
-        static let pushMagnitudeRandom: CGFloat = CGFloat(50.0) + CGFloat(50.0).arc4random
     }
     
     struct Duration {
         static let rearrange: TimeInterval = 0.8
-        static let chaosFly: TimeInterval = 0.5
+        static let bounceAround: TimeInterval = 0.5
         static let flyToDiscardPile: TimeInterval = 0.2
         static let flyFromDeck: TimeInterval = 0.1
         static let flip: TimeInterval = 0.1
