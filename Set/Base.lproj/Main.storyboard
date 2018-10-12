@@ -20,14 +20,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4lM-ia-J9E" customClass="BoardView" customModule="Set" customModuleProvider="target">
-                                <rect key="frame" x="10" y="30" width="355" height="519"/>
+                                <rect key="frame" x="10" y="30" width="355" height="483"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9oy-sg-3og">
-                                <rect key="frame" x="10" y="557" width="355" height="100"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9oy-sg-3og">
+                                <rect key="frame" x="50" y="521" width="275" height="100"/>
                                 <subviews>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardBack" translatesAutoresizingMaskIntoConstraints="NO" id="jA0-6o-Jgu">
-                                        <rect key="frame" x="0.0" y="0.0" width="72" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="71.5" height="100"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="jA0-6o-Jgu" secondAttribute="height" id="FGi-FX-4YM"/>
@@ -43,10 +43,11 @@
                                             <outletCollection property="gestureRecognizers" destination="qxs-v5-4Ga" appends="YES" id="lGx-ra-O81"/>
                                         </connections>
                                     </imageView>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardBack" translatesAutoresizingMaskIntoConstraints="NO" id="Yjp-Wz-HdM">
-                                        <rect key="frame" x="77" y="0.0" width="72" height="100"/>
+                                    <imageView alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardBack" translatesAutoresizingMaskIntoConstraints="NO" id="Yjp-Wz-HdM">
+                                        <rect key="frame" x="203.5" y="0.0" width="71.5" height="100"/>
                                         <gestureRecognizers/>
                                         <constraints>
+                                            <constraint firstAttribute="width" secondItem="Yjp-Wz-HdM" secondAttribute="height" multiplier="5:7" id="09b-ih-bt4"/>
                                             <constraint firstAttribute="width" secondItem="Yjp-Wz-HdM" secondAttribute="height" id="0G3-ES-e3n"/>
                                             <constraint firstAttribute="width" secondItem="Yjp-Wz-HdM" secondAttribute="height" multiplier="5:7" id="btn-9V-pSk"/>
                                             <constraint firstAttribute="height" constant="100" id="fCw-w2-BeR"/>
@@ -54,18 +55,10 @@
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="0G3-ES-e3n"/>
+                                                <exclude reference="btn-9V-pSk"/>
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUa-1z-aer" customClass="ControlButton" customModule="Set" customModuleProvider="target">
-                                        <rect key="frame" x="154" y="0.0" width="201" height="100"/>
-                                        <state key="normal" title="New Game">
-                                            <color key="titleColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pressNewGameButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bQK-Rj-xrJ"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -75,21 +68,34 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="t1O-1c-F2g"/>
+                                        <exclude reference="BQz-07-cXf"/>
                                     </mask>
                                 </variation>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUa-1z-aer" customClass="ControlButton" customModule="Set" customModuleProvider="target">
+                                <rect key="frame" x="30" y="629" width="315" height="30"/>
+                                <state key="normal" title="New Game">
+                                    <color key="titleColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressNewGameButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bQK-Rj-xrJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.52156862745098043" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4lM-ia-J9E" secondAttribute="trailing" constant="10" id="6MM-jc-RQW"/>
                             <constraint firstItem="4lM-ia-J9E" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="AyF-O0-9I2"/>
-                            <constraint firstItem="9oy-sg-3og" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Ejy-dE-xqz"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9oy-sg-3og" secondAttribute="trailing" constant="10" id="LkP-wh-WlS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PUa-1z-aer" secondAttribute="trailing" constant="30" id="B0g-dn-zYL"/>
+                            <constraint firstItem="9oy-sg-3og" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="Ejy-dE-xqz"/>
+                            <constraint firstItem="PUa-1z-aer" firstAttribute="top" secondItem="9oy-sg-3og" secondAttribute="bottom" constant="8" id="KAo-9C-lKc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9oy-sg-3og" secondAttribute="trailing" constant="50" id="LkP-wh-WlS"/>
+                            <constraint firstItem="PUa-1z-aer" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="Q44-xk-kZG"/>
                             <constraint firstItem="9oy-sg-3og" firstAttribute="top" secondItem="4lM-ia-J9E" secondAttribute="bottom" constant="8" id="QRh-c0-vkJ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9oy-sg-3og" secondAttribute="bottom" constant="10" id="aJH-Rc-1tx"/>
                             <constraint firstItem="4lM-ia-J9E" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="mec-qU-imL"/>
                             <constraint firstItem="9oy-sg-3og" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="uJF-Oh-X1O"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PUa-1z-aer" secondAttribute="bottom" constant="8" id="v8C-hf-2uA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
