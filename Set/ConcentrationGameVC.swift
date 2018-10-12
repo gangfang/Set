@@ -11,10 +11,7 @@ import UIKit
 class ConcentrationGameVC: UIViewController {
     
     private var game: ConcentrationGame!
-    private var emojiChoices: [String]!
-    private var themes = ["face": ["😀", "😃", "😄", "😁", "😆", "😅", "😂"],
-                          "animal": ["🐶", "🐱", "🦊", "🐻", "🐹", "🐰", "🐭"],
-                          "fruit": ["🍎", "🍐", "🍋", "🍉", "🍊", "🍌", "🍏"]]
+    var emojiChoices: [String]?
     private var emoji = [Int:String]()
     var numberOfPairsOfCards: Int {
         return (cardButtons.count+1) / 2
@@ -29,26 +26,16 @@ class ConcentrationGameVC: UIViewController {
             updateViewFromModel()
         }
     }
-    @IBAction func startNewGame(_ sender: UIButton) {
-        pickATheme()
-        initializeGameModel()
-        updateViewFromModel()
-    }
+    
     
     override func viewDidLoad() {
         initializeGameModel()
-        pickATheme()
-        
     }
     
     private func initializeGameModel() {
         game = ConcentrationGame(numberOfPairsOfCards: numberOfPairsOfCards)
     }
     
-    private func pickATheme() {
-        let themeNames = Array(themes.keys)
-        emojiChoices = themes[themeNames[themes.count.arc4random]]!
-    }
     
     
     private func updateViewFromModel() {
@@ -67,8 +54,10 @@ class ConcentrationGameVC: UIViewController {
     }
     
     private func emoji(for card: ConcentrationCard) -> String {
-        if emoji[card.identifier] == nil, emojiChoices.count > 0 {
-            emoji[card.identifier] = emojiChoices.remove(at: emojiChoices.count.arc4random)
+        if emojiChoices != nil {
+            if emoji[card.identifier] == nil, emojiChoices!.count > 0 {
+                emoji[card.identifier] = emojiChoices!.remove(at: emojiChoices!.count.arc4random)
+            }
         }
         
         return emoji[card.identifier] ?? "?"

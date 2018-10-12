@@ -141,8 +141,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="DgW-mi-1s5"/>
                         <segue destination="exF-k2-VmY" kind="relationship" relationship="viewControllers" id="RmI-we-5zp"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="DgW-mi-1s5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IGa-iP-wGi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -164,16 +164,25 @@
                                         <rect key="frame" x="0.0" y="0.0" width="118" height="60"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <state key="normal" title="Face"/>
+                                        <connections>
+                                            <segue destination="j2u-Gm-Pa7" kind="showDetail" identifier="faceTheme" id="Tee-Dr-ede"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="138-jL-tkG">
                                         <rect key="frame" x="0.0" y="68" width="118" height="60"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <state key="normal" title="Animal"/>
+                                        <connections>
+                                            <segue destination="j2u-Gm-Pa7" kind="showDetail" identifier="animalTheme" id="Bnb-Gi-YUa"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXy-fj-GVD">
                                         <rect key="frame" x="0.0" y="136" width="118" height="60"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <state key="normal" title="Fruit"/>
+                                        <connections>
+                                            <segue destination="j2u-Gm-Pa7" kind="showDetail" identifier="fruitTheme" id="QKg-Hl-h6q"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -186,9 +195,6 @@
                         <viewLayoutGuide key="safeArea" id="6jd-ip-Mzd"/>
                     </view>
                     <navigationItem key="navigationItem" id="kBd-cb-TMn"/>
-                    <connections>
-                        <segue destination="j2u-Gm-Pa7" kind="showDetail" id="PX8-TE-tN1"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEG-wh-MWy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -203,25 +209,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0kE-aH-fBB">
-                                <rect key="frame" x="10" y="993" width="814" height="60"/>
+                                <rect key="frame" x="10" y="1005" width="814" height="48"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flips: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egV-nA-YvD">
-                                        <rect key="frame" x="0.0" y="0.0" width="124" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="814" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MjP-eE-JWM">
-                                        <rect key="frame" x="144" y="0.0" width="670" height="60"/>
-                                        <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="New Game">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="startNewGame:" destination="j2u-Gm-Pa7" eventType="touchUpInside" id="xxm-yX-dxc"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="taG-Zr-bRa">
@@ -411,6 +406,6 @@
         <image name="cardBack" width="481" height="676"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9OJ-et-E50"/>
+        <segue reference="QKg-Hl-h6q"/>
     </inferredMetricsTieBreakers>
 </document>
