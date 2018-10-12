@@ -63,6 +63,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A42501772170B8360077DBBB /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A4E86F98217074A900FEB222 /* ConcentrationThemeChooserVC.swift */,
+				A4E86F9321706E9C00FEB222 /* ConcentrationGameVC.swift */,
+				A4672B4720E09AB500E23D42 /* SetGameVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		A4672B3920E09AB500E23D42 = {
 			isa = PBXGroup;
 			children = (
@@ -83,16 +93,13 @@
 			isa = PBXGroup;
 			children = (
 				A4C8BE6A216D771F000EEDBB /* notes.txt */,
-				A4E86F9321706E9C00FEB222 /* ConcentrationGameVC.swift */,
-				A4E86F98217074A900FEB222 /* ConcentrationThemeChooserVC.swift */,
-				A4672B4720E09AB500E23D42 /* SetGameVC.swift */,
+				A42501772170B8360077DBBB /* ViewControllers */,
+				A4C8BE70216D86DA000EEDBB /* Models */,
 				A46A19622112CE0F0047DEAF /* BoardView.swift */,
 				A426AF4D2115C013007C9753 /* CardView.swift */,
 				A4C8BE6E216D79AB000EEDBB /* CardBehavior.swift */,
 				A43EE172215DCD6800A0AF05 /* ControlButton.swift */,
-				A4C8BE71216D8787000EEDBB /* Constants.swift */,
 				A4672B4920E09AB500E23D42 /* Main.storyboard */,
-				A4C8BE70216D86DA000EEDBB /* Models */,
 				A4672B5720E0B73300E23D42 /* Supporting files */,
 				A4672B5120E09AB600E23D42 /* Info.plist */,
 			);
@@ -103,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				A43EE170215DBC0500A0AF05 /* Assets.xcassets */,
+				A4C8BE71216D8787000EEDBB /* Constants.swift */,
 				A42AE76620F739B30043CD46 /* Grid.swift */,
 				A4672B4520E09AB500E23D42 /* AppDelegate.swift */,
 				A4672B4E20E09AB600E23D42 /* LaunchScreen.storyboard */,
