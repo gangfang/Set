@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SetViewController: UIViewController {
 
     var setGame = SetGame()
     var cardViewsToDeal: [CardView] {
