@@ -25,6 +25,7 @@
 		A4E86F9521706E9C00FEB222 /* ConcentrationGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E86F9221706E9C00FEB222 /* ConcentrationGame.swift */; };
 		A4E86F9621706E9C00FEB222 /* ConcentrationGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E86F9321706E9C00FEB222 /* ConcentrationGameVC.swift */; };
 		A4E86F9721706E9C00FEB222 /* ConcentrationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E86F9421706E9C00FEB222 /* ConcentrationCard.swift */; };
+		A4E86F99217074A900FEB222 /* ConcentrationThemeChooserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E86F98217074A900FEB222 /* ConcentrationThemeChooserVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		A4E86F9221706E9C00FEB222 /* ConcentrationGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcentrationGame.swift; sourceTree = "<group>"; };
 		A4E86F9321706E9C00FEB222 /* ConcentrationGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcentrationGameVC.swift; sourceTree = "<group>"; };
 		A4E86F9421706E9C00FEB222 /* ConcentrationCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcentrationCard.swift; sourceTree = "<group>"; };
+		A4E86F98217074A900FEB222 /* ConcentrationThemeChooserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationThemeChooserVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			children = (
 				A4C8BE6A216D771F000EEDBB /* notes.txt */,
 				A4E86F9321706E9C00FEB222 /* ConcentrationGameVC.swift */,
+				A4E86F98217074A900FEB222 /* ConcentrationThemeChooserVC.swift */,
 				A4672B4720E09AB500E23D42 /* SetGameVC.swift */,
 				A46A19622112CE0F0047DEAF /* BoardView.swift */,
 				A426AF4D2115C013007C9753 /* CardView.swift */,
@@ -196,6 +199,7 @@
 				A4E86F9621706E9C00FEB222 /* ConcentrationGameVC.swift in Sources */,
 				A46A19632112CE0F0047DEAF /* BoardView.swift in Sources */,
 				A4E86F9521706E9C00FEB222 /* ConcentrationGame.swift in Sources */,
+				A4E86F99217074A900FEB222 /* ConcentrationThemeChooserVC.swift in Sources */,
 				A4BE365020E6619000E9A15D /* SetDeck.swift in Sources */,
 				A4C8BE6F216D79AB000EEDBB /* CardBehavior.swift in Sources */,
 				A4E86F9721706E9C00FEB222 /* ConcentrationCard.swift in Sources */,
