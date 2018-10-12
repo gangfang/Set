@@ -26,14 +26,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9oy-sg-3og">
                                 <rect key="frame" x="10" y="557" width="355" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deck: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KG-e7-rkB">
-                                        <rect key="frame" x="0.0" y="0.0" width="136.5" height="100"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardBack" translatesAutoresizingMaskIntoConstraints="NO" id="jA0-6o-Jgu">
-                                        <rect key="frame" x="141.5" y="0.0" width="72" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="100"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="jA0-6o-Jgu" secondAttribute="height" id="FGi-FX-4YM"/>
@@ -50,7 +44,7 @@
                                         </connections>
                                     </imageView>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardBack" translatesAutoresizingMaskIntoConstraints="NO" id="Yjp-Wz-HdM">
-                                        <rect key="frame" x="218.5" y="0.0" width="72" height="100"/>
+                                        <rect key="frame" x="77" y="0.0" width="72" height="100"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Yjp-Wz-HdM" secondAttribute="height" id="0G3-ES-e3n"/>
@@ -64,7 +58,7 @@
                                         </variation>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUa-1z-aer" customClass="ControlButton" customModule="Set" customModuleProvider="target">
-                                        <rect key="frame" x="295.5" y="0.0" width="59.5" height="100"/>
+                                        <rect key="frame" x="154" y="0.0" width="201" height="100"/>
                                         <state key="normal" title="New Game">
                                             <color key="titleColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -78,6 +72,11 @@
                                     <constraint firstItem="Yjp-Wz-HdM" firstAttribute="width" secondItem="Yjp-Wz-HdM" secondAttribute="height" multiplier="5:7" id="BQz-07-cXf"/>
                                     <constraint firstItem="jA0-6o-Jgu" firstAttribute="centerX" secondItem="9oy-sg-3og" secondAttribute="centerX" id="t1O-1c-F2g"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="t1O-1c-F2g"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.52156862745098043" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -101,7 +100,6 @@
                     <connections>
                         <outlet property="boardView" destination="4lM-ia-J9E" id="fo3-9m-Z0I"/>
                         <outlet property="bottomStackView" destination="9oy-sg-3og" id="YUB-HT-Bif"/>
-                        <outlet property="deckCountLabel" destination="5KG-e7-rkB" id="hXt-PF-uMa"/>
                         <outlet property="deckImage" destination="jA0-6o-Jgu" id="kk6-Hi-Z9g"/>
                         <outlet property="discardPileImage" destination="Yjp-Wz-HdM" id="BZF-7a-Olb"/>
                     </connections>

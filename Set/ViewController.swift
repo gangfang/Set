@@ -25,11 +25,12 @@ class ViewController: UIViewController {
     lazy var animator = UIDynamicAnimator(referenceView: view)
     lazy var cardBehavior = CardBehavior(in: animator)
     
+    let deckCountLabel = UILabel()
+    var attributedString: NSMutableAttributedString?
     @IBOutlet weak var boardView: BoardView!
     @IBOutlet weak var bottomStackView: UIStackView!
     @IBOutlet weak var deckImage: UIImageView!
     @IBOutlet weak var discardPileImage: UIImageView!
-    @IBOutlet weak var deckCountLabel: UILabel!
     
     
     // MARK: UI events
@@ -79,6 +80,18 @@ class ViewController: UIViewController {
     private func dealThreeMoreCards() {
         setGame.dealThreeMoreCards()
         updateViewFromModel()
+    }
+    
+    
+    private func initializeDeckCountLabel() {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        attributedString = NSMutableAttributedString(string: "81",
+                                                     attributes: [.backgroundColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), .paragraphStyle: paragraphStyle])
+        deckCountLabel.attributedText = attributedString
+        
+        deckCountLabel.frame = deckImage.frame
+        deckImage.addSubview(deckCountLabel)
     }
     
     
@@ -218,16 +231,22 @@ class ViewController: UIViewController {
 
     
     private func updateDeckCountLabel() {
-        deckCountLabel.text = "Deck: \(setGame.deck.cardsCount)"
+        if let attributedString = attributedString {
+            attributedString.mutableString.setString("\(setGame.deck.cardsCount)")
+            deckCountLabel.attributedText = attributedString
+        }
     }
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateViewFromModel()
         
         boardView.backgroundColor = .clear
         boardView.isOpaque = false
+        
+        initializeDeckCountLabel()
+        updateViewFromModel()
     }
 }
 
