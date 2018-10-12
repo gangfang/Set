@@ -94,8 +94,7 @@ class SetGame {
             cards.reduce(0, {$0 + $1.shading.rawValue}),
             cards.reduce(0, {$0 + $1.color.rawValue})
         ]
-//        return sums.reduce(true, {$0 && $1 % 3 == 0})
-        return true     // for test
+        return sums.reduce(true, {$0 && $1 % 3 == 0})
     }
     
     

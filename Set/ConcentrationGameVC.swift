@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConcentrationViewController: UIViewController {
+class ConcentrationGameVC: UIViewController {
     
     private var game: ConcentrationGame!
     private var emojiChoices: [String]!
