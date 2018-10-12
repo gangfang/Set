@@ -3,6 +3,8 @@
 
 Credit to tatiana.kornilova@gmail.com, I borrowed his ideas for card shading drawing and UI design to my implementation.
 
+Note that UI has not been designed/handled for landscape mode of neither game.
+
 ## Snapshots:
 
 ![The Concentration Game](concentration.png)
